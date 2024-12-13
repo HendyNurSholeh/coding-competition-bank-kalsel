@@ -17,21 +17,13 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-dev
 
-      # Upload application files (excluding certain folders)
-      - name: Upload application files
-        env:
-          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+      # Compress application files (excluding .git, .github, and public folders)
+      - name: Compress application files
         run: |
-          mkdir -p ~/.ssh
-          echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -p 5451 hendy.my.id >> ~/.ssh/known_hosts
-          scp -P 5451 -r \
-            $(find . -type d \( -name .git -o -name .github -o -name public \) -prune -o -print) \
-            cuannext@hendy.my.id:/home/cuannext/hendy.my.id/hackathon/
+          tar --exclude='./.git' --exclude='./.github' --exclude='./public' -czf application.tar.gz .
 
-      # Upload public files to public_html
-      - name: Upload public files
+      # Upload compressed application files
+      - name: Upload compressed files
         env:
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
         run: |
@@ -39,7 +31,90 @@ jobs:
           echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -p 5451 hendy.my.id >> ~/.ssh/known_hosts
-          scp -P 5451 -r public/ cuannext@hendy.my.id:/home/cuannext/hendy.my.id/public_html/
+          scp -P 5451 application.tar.gz cuannext@hendy.my.id:/home/cuannext/hendy.my.id/
+
+      # Extract application files on the server
+      - name: Extract files on server
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p 5451 hendy.my.id >> ~/.ssh/known_hosts
+          ssh -p 5451 cuannext@hendy.my.id "mkdir -p /home/cuannext/hendy.my.id/hackathon && tar -xzf /home/cuannext/hendy.my.id/application.tar.gz -C /home/cuannext/hendy.my.id/hackathon && rm /home/cuannext/hendy.my.id/application.tar.gz"
+
+      # Compress public files
+      - name: Compress public files
+        run: tar -czf public.tar.gz -C public .
+
+      # Upload compressed public files
+      - name: Upload compressed public files
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p 5451 hendy.my.id >> ~/.ssh/known_hosts
+          scp -P 5451 public.tar.gz cuannext@hendy.my.id:/home/cuannext/hendy.my.id/
+
+      # Extract public files on the server
+      - name: Extract public files on server
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p 5451 hendy.my.id >> ~/.ssh/known_hosts
+          ssh -p 5451 cuannext@hendy.my.id "mkdir -p /home/cuannext/hendy.my.id/public_html && tar -xzf /home/cuannext/hendy.my.id/public.tar.gz -C /home/cuannext/hendy.my.id/public_html && rm /home/cuannext/hendy.my.id/public.tar.gz"
+
+
+
+
+#on:
+#  push:
+#    branches: [master]
+#
+#name: 🚀 Deploy CI4 Application
+#
+#jobs:
+#  web-deploy:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      # Checkout code
+#      - name: Checkout code
+#        uses: actions/checkout@v2
+#
+#      # Install Composer dependencies
+#      - name: Install Composer dependencies
+#        run: composer install --no-dev
+#
+#      # Upload application files (excluding certain folders)
+#      - name: Upload application files
+#        env:
+#          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+#        run: |
+#          mkdir -p ~/.ssh
+#          echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
+#          chmod 600 ~/.ssh/id_rsa
+#          ssh-keyscan -p 5451 hendy.my.id >> ~/.ssh/known_hosts
+#          scp -P 5451 -r \
+#            $(find . -type d \( -name .git -o -name .github -o -name public \) -prune -o -print) \
+#            cuannext@hendy.my.id:/home/cuannext/hendy.my.id/hackathon/
+#
+#      # Upload public files to public_html
+#      - name: Upload public files
+#        env:
+#          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+#        run: |
+#          mkdir -p ~/.ssh
+#          echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
+#          chmod 600 ~/.ssh/id_rsa
+#          ssh-keyscan -p 5451 hendy.my.id >> ~/.ssh/known_hosts
+#          scp -P 5451 -r public/ cuannext@hendy.my.id:/home/cuannext/hendy.my.id/public_html/
 
 
 #on:
