@@ -19,12 +19,13 @@ jobs:
         uses: burnett01/rsync-deployments@4.1
         with:
           # Menyinkronkan semua file kecuali .git, .github, dan folder public
-          switches: -avzr --delete --exclude=".git" --exclude=".github" --exclude="public/" -e "ssh -v -p 5451"
+          switches: -avzr --delete --exclude=".git" --exclude=".github" --exclude="public/"
           path: .
           remote_path: /home/cuannext/domains/hendy.my.id/hackathon
           remote_host: hendy.my.id
           remote_user: cuannext
           remote_key: ${{ secrets.DEPLOY_KEY }}
+          remote_port: 5451
 
       - name: Sync public files
         uses: burnett01/rsync-deployments@4.1
