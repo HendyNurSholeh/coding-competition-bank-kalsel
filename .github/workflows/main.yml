@@ -29,7 +29,7 @@ jobs:
       - name: Sync public files
         uses: burnett01/rsync-deployments@4.1
         with:
-          # Menyinkronkan folder public tanpa .env
+          # Menyinkronkan folder public   tanpa .env
           switches: -avzr --delete --exclude=".env" -e "ssh -p 5451"
           path: public/
           remote_path: /home/cuannext/domains/hendy.my.id/public_html/
