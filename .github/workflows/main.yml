@@ -9,34 +9,37 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout code
       - name: Checkout code
         uses: actions/checkout@v2
 
+      # Install Composer dependencies
       - name: Install Composer dependencies
         run: composer install --no-dev
 
-      - name: Sync files
-        uses: burnett01/rsync-deployments@4.1
-        with:
-          # Menyinkronkan semua file kecuali .git, .github, dan folder public
-          switches: -avzr --delete --exclude=".git" --exclude=".github" --exclude="public/"
-          path: .
-          remote_path: /home/cuannext/domains/hendy.my.id/hackathon
-          remote_host: hendy.my.id
-          remote_user: cuannext
-          remote_key: ${{ secrets.DEPLOY_KEY }}
-          remote_port: 5451
+      # Upload application files (excluding certain folders)
+      - name: Upload application files
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p 5451 hendy.my.id >> ~/.ssh/known_hosts
+          scp -P 5451 -r \
+            $(find . -type d \( -name .git -o -name .github -o -name public \) -prune -o -print) \
+            cuannext@hendy.my.id:/home/cuannext/domains/hendy.my.id/hackathon/
 
-      - name: Sync public files
-        uses: burnett01/rsync-deployments@4.1
-        with:
-          # Menyinkronkan folder public   tanpa .env
-          switches: -avzr --delete --exclude=".env" -e "ssh -p 5451"
-          path: public/
-          remote_path: /home/cuannext/domains/hendy.my.id/public_html/
-          remote_host: hendy.my.id
-          remote_user: cuannext
-          remote_key: ${{ secrets.DEPLOY_KEY }}
+      # Upload public files to public_html
+      - name: Upload public files
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p 5451 hendy.my.id >> ~/.ssh/known_hosts
+          scp -P 5451 -r public/ cuannext@hendy.my.id:/home/cuannext/domains/hendy.my.id/public_html/
 
 
 #on:
