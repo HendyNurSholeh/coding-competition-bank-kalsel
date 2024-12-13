@@ -15,24 +15,64 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-dev
 
-      - name: Sync application files
+      - name: Sync files
         uses: burnett01/rsync-deployments@4.1
         with:
           # Menyinkronkan semua file kecuali .git, .github, dan folder public
-          switches: -avzr --delete --exclude=".git" --exclude=".github" --exclude="public/"
+          switches: -avzr --delete --exclude=".git" --exclude=".github" --exclude="public/" -e "ssh -p 5451"
           path: .
-          remote_path: /home/batuahcoba/domains/ujicoba.batuah.tech/hackathon
-          remote_host: ujicoba.batuah.tech
-          remote_user: batuahcoba
+          remote_path: /home/cuannext/domains/hendy.my.id/hackathon
+          remote_host: hendy.my.id
+          remote_user: cuannext
           remote_key: ${{ secrets.DEPLOY_KEY }}
 
       - name: Sync public files
         uses: burnett01/rsync-deployments@4.1
         with:
-          # Menyinkronkans folder dspublic tanpa .env
-          switches: -avzr --delete --exclude=".env"
+          # Menyinkronkan folder public tanpa .env
+          switches: -avzr --delete --exclude=".env" -e "ssh -p 5451"
           path: public/
-          remote_path: /home/batuahcoba/domains/ujicoba.batuah.tech/public_html/
-          remote_host: ujicoba.batuah.tech
-          remote_user: batuahcoba
+          remote_path: /home/cuannext/domains/hendy.my.id/public_html/
+          remote_host: hendy.my.id
+          remote_user: cuannext
           remote_key: ${{ secrets.DEPLOY_KEY }}
+
+
+#on:
+#  push:
+#    branches: [master]
+#
+#name: 🚀 Deploy CI4 Application
+#
+#jobs:
+#  web-deploy:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v2
+#
+#      - name: Install Composer dependencies
+#        run: composer applicationinstall --no-dev
+#
+#      - name: Sync  files
+#        uses: burnett01/rsync-deployments@4.1
+#        with:
+#          # Menyinkronkan semua file kecuali .git, .github, dan folder public
+#          switches: -avzr --delete --exclude=".git" --exclude=".github" --exclude="public/"
+#          path: .
+#          remote_path: /home/batuahcoba/domains/ujicoba.batuah.tech/hackathon
+#          remote_host: ujicoba.batuah.tech
+#          remote_user: batuahcoba
+#          remote_key: ${{ secrets.DEPLOY_KEY }}
+#
+#      - name: Sync public files
+#        uses: burnett01/rsync-deployments@4.1
+#        with:
+#          # Menyinkronkans folder dspublic tanpa .env
+#          switches: -avzr --delete --exclude=".env"
+#          path: public/
+#          remote_path: /home/batuahcoba/domains/ujicoba.batuah.tech/public_html/
+#          remote_host: ujicoba.batuah.tech
+#          remote_user: batuahcoba
+#          remote_key: ${{ secrets.DEPLOY_KEY }}
