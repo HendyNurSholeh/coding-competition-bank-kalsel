@@ -139,18 +139,18 @@ $routes->group('corpo', function($routes) {
     $routes->get('dashboard', 'ESR\DashboardController::index');
 });
 $routes->get('test', 'DeptHead\PengajuanSimperController::test');
-$routes->group('karyawan', function($routes) {
-    $routes->get('dashboard', 'Karyawan\DashboardController::index');
+$routes->group('pengguna', function($routes) {
+    $routes->get('dashboard', 'Pengguna\DashboardController::index');
     $routes->group('id_card', function($routes) {
-        $routes->get('/', 'Karyawan\MinePermitController::index');
+        $routes->get('/', 'Pengguna\MinePermitController::index');
     });
     $routes->group('simper', function($routes) {
-        $routes->get('/', 'Karyawan\SimperController::index');
-        $routes->get('pernyataan-disiplin/(:num)', 'Karyawan\SimperController::pernyataanDisiplin/$1');
-        $routes->post('post-pernyataan-disiplin/(:num)', 'Karyawan\SimperController::postPernyataanDisiplin/$1');
-        $routes->get('post-test/(:num)/(:num)', 'Karyawan\SimperController::postTest/$1/$2');
-        $routes->post('post-post-test/(:num)/(:num)', 'Karyawan\SimperController::postPostTest/$1/$2');
-        $routes->post('post-create-biodata', 'Karyawan\SimperController::postCreateBiodata');
+        $routes->get('/', 'Pengguna\SimperController::index');
+        $routes->get('pernyataan-disiplin/(:num)', 'Pengguna\SimperController::pernyataanDisiplin/$1');
+        $routes->post('post-pernyataan-disiplin/(:num)', 'Pengguna\SimperController::postPernyataanDisiplin/$1');
+        $routes->get('post-test/(:num)/(:num)', 'Pengguna\SimperController::postTest/$1/$2');
+        $routes->post('post-post-test/(:num)/(:num)', 'Pengguna\SimperController::postPostTest/$1/$2');
+        $routes->post('post-create-biodata', 'Pengguna\SimperController::postCreateBiodata');
     });
 });
 

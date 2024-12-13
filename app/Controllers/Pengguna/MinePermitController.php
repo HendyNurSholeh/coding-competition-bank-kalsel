@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Karyawan;
+namespace App\Controllers\Pengguna;
 
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -17,6 +17,6 @@ class MinePermitController extends BaseController
         ];
         // $data['company'] = $companyModel->find($companyId);
         // $data['anggota'] = $anggotaModel->getAnggotaData($companyId);
-        return view('karyawan/minepermit/biodata', $data);
+        return view('pengguna/minepermit/biodata', $data);
     }
 }

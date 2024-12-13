@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Karyawan;
+namespace App\Controllers\Pengguna;
 
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -17,7 +17,7 @@ class DashboardController extends BaseController
         ];
         // $data['company'] = $companyModel->find($companyId);
         // $data['anggota'] = $anggotaModel->getAnggotaData($companyId);
-        return view('karyawan/dashboard', $data);
+        return view('pengguna/dashboard', $data);
     }
     public function ajukanMinePermit(): string
     {
@@ -29,6 +29,6 @@ class DashboardController extends BaseController
         ];
         // $data['company'] = $companyModel->find($companyId);
         // $data['anggota'] = $anggotaModel->getAnggotaData($companyId);
-        return view('karyawan/ajukan-minepermit', $data);
+        return view('pengguna/ajukan-minepermit', $data);
     }
 }

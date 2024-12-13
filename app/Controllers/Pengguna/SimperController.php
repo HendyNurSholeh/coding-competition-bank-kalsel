@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Karyawan;
+namespace App\Controllers\Pengguna;
 
 use App\Controllers\BaseController;
 use App\Models\AnswerHistoryModel;
@@ -38,7 +38,7 @@ class SimperController extends BaseController
         }
         // $data['company'] = $companyModel->find($companyId);
         // $data['anggota'] = $anggotaModel->getAnggotaData($companyId);
-        return view('karyawan/simper/biodata', $data);
+        return view('pengguna/simper/biodata', $data);
     }
     public function pernyataanDisiplin($simperId): string
     {
@@ -51,11 +51,11 @@ class SimperController extends BaseController
         ];
         // $data['company'] = $companyModel->find($companyId);
         // $data['anggota'] = $anggotaModel->getAnggotaData($companyId);
-        return view('karyawan/simper/pernyataan-disiplin', $data);
+        return view('pengguna/simper/pernyataan-disiplin', $data);
     }
     public function postPernyataanDisiplin($simperId)
     {
-        return redirect()->to("karyawan/simper/post-test/$simperId/1");
+        return redirect()->to("pengguna/simper/post-test/$simperId/1");
     }
     public function postTest($simperId, $id): string
     {
@@ -80,7 +80,7 @@ class SimperController extends BaseController
         
         // $data['company'] = $companyModel->find($companyId);
         // $data['anggota'] = $angg otaModel->getAnggotaData($companyId);
-        return view('karyawan/simper/post-test', $data);
+        return view('pengguna/simper/post-test', $data);
     }
 
     public function postPostTest($simperId, $id){
@@ -116,9 +116,9 @@ class SimperController extends BaseController
 
         
         if($id ==1){
-            return redirect()->to("/karyawan/simper/post-test/$simperId/2");
+            return redirect()->to("/pengguna/simper/post-test/$simperId/2");
         }
-        return redirect()->to("/karyawan/simper/post-test/$simperId/2");
+        return redirect()->to("/pengguna/simper/post-test/$simperId/2");
     }
     public function postCreateBiodata(){
         // dd($this->request->getPost());
@@ -213,7 +213,7 @@ class SimperController extends BaseController
             $data['approval_corpo'] = "not_applicable";
         }
         $lastId = $this->simperModel->update( $lastId, $data);
-        return redirect()->to("/karyawan/simper/pernyataan-disiplin/$lastId");
+        return redirect()->to("/pengguna/simper/pernyataan-disiplin/$lastId");
         // return redirect()->to("/" . $outputPathMinePermit)->with("success", "Success! Simper berhasil ditambah.");
     
 }
