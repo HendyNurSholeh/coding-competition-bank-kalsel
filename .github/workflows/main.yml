@@ -17,8 +17,8 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-dev
 
-      # Upload application files (excluding certain folders)
-      - name: Upload application files
+      # Setup SSH
+      - name: Setup SSH
         env:
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
         run: |
@@ -26,21 +26,25 @@ jobs:
           echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -p 5451 hendy.my.id >> ~/.ssh/known_hosts
-          scp -P 5451 -r \
-            $(find . -type d \( -name .git -o -name .github -o -name public \) -prune -o -print) \
-            cuannext@hendy.my.id:/home/cuannext/domains/hendy.my.id/hackathon/
+
+      # Create directory on server (if not exists)
+      - name: Create directories on server
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+        run: |
+          ssh -p 5451 cuannext@hendy.my.id "mkdir -p /home/cuannext/domains/hendy.my.id/hackathon/ && mkdir -p /home/cuannext/domains/hendy.my.id/public_html/"
+
+      # Upload application files (excluding certain folders)
+      - name: Upload application files
+        run: |
+          rsync -avz --exclude=".git" --exclude=".github" --exclude="public/" -e "ssh -p 5451" \
+          ./ cuannext@hendy.my.id:/home/cuannext/domains/hendy.my.id/hackathon/
 
       # Upload public files to public_html
       - name: Upload public files
-        env:
-          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
         run: |
-          mkdir -p ~/.ssh
-          echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -p 5451 hendy.my.id >> ~/.ssh/known_hosts
-          scp -P 5451 -r public/ cuannext@hendy.my.id:/home/cuannext/domains/hendy.my.id/public_html/
-
+          rsync -avz --exclude=".env" -e "ssh -p 5451" \
+          public/ cuannext@hendy.my.id:/home/cuannext/domains/hendy.my.id/public_html/
 
 #on:
 #  push:
