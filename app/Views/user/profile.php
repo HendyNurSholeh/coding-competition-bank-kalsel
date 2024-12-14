@@ -54,7 +54,7 @@
                         <div class="d-flex flex-center flex-column">
                             <!--begin::Avatar-->
                             <div class="symbol  mb-3 symbol-100px symbol-circle "><img alt="Pic"
-                                    src="<?= base_url('uploads/pas_foto/') . $profileData['pas_foto'] ?? 'blank.png'?>" />
+                                    src="<?= base_url('assets/media/avatars/150-1.jpg') ?>" />
                             </div>
                             <!--end::Avatar-->
                             <!--begin::Name-->

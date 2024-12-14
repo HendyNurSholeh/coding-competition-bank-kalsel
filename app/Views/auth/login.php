@@ -154,8 +154,8 @@ License: For each use you must have a valid license purchased only from above li
 
                             <!--begin::Input-->
                             <input class="form-control form-control-lg form-control-solid"
-                                placeholder="masukkan username" type="text" name="username" autocomplete="off"
-                                required />
+                                placeholder="masukkan username" type="text" name="username"
+                                value="<?= session('username') ?? ''; ?>" autocomplete="off" required />
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->
@@ -175,8 +175,8 @@ License: For each use you must have a valid license purchased only from above li
 
                             <!--begin::Input-->
                             <input class="form-control form-control-lg form-control-solid"
-                                placeholder="masukkan password" type="password" name="password" autocomplete="off"
-                                required />
+                                placeholder="masukkan password" value="<?= session('password') ?? ''; ?>"
+                                type="password" name="password" autocomplete="off" required />
                             <!--end::Input-->
 
                         </div>

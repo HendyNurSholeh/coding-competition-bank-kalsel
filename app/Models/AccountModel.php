@@ -12,7 +12,7 @@ class AccountModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ["nama", "email", "level" ,"username", "password"];
+    protected $allowedFields    = ["nama", "email", "level" ,"username", "password", "pas_foto"];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

@@ -1,4 +1,4 @@
-<?= $this->extend('layouts/pengguna_layout') ?>
+<?= $this->extend('layouts/user_layout') ?>
 <?= $this->section('css') ?>
 <style>
 /* Untuk input search */
@@ -43,60 +43,83 @@
                                 <?= ucwords(strtolower(session('nama'))); ?>!</div>
                             <!--end::Name-->
                             <!--begin::Position-->
-                            <div class="fs-4 text-white mb-2 text-center">Saldo Anda</div>
+                            <div class="fs-4 text-white mb-2 text-center">Kredit Anda</div>
                             <div class="fs-1 fw-bold text-white text-center">Rp
-                                <?= number_format($rekening['saldo'], 0, ',', '.') ?>
+                                <?= number_format(5000000, 0, ',', '.') ?>
                             </div>
                             <!--end::Position-->
                             <!--begin::Actions-->
                             <div class="d-flex mt-4 justify-content-center">
-                                <a href="<?= base_url('pengguna/topup') ?>" class="btn btn-light-primary me-2">Top
-                                    Up</a>
-                                <a href="<?= base_url('pengguna/transfer') ?>"
-                                    class="btn btn-light-warning">Transfer</a>
+                                <a href="<?= base_url('user/ajukan-kredit') ?>"
+                                    class="btn btn-light-primary me-2">Ajukan Kredit</a>
+                                <a href="<?= base_url('user/bayar_kredit') ?>" class="btn btn-light-warning">Bayar
+                                    Kredit</a>
                             </div>
                             <!--end::Actions-->
                         </div>
                     </div>
                     <div class="col-lg-8">
-                        <div class="d-flex flex-column pt-3 py-10  bg-white rounded">
-                            <!--begin::Title-->
+                        <div class="d-flex flex-column pt-3 py-10 bg-white rounded">
+                            <!--begin::Credit Details-->
                             <div class="d-flex justify-content-between align-items-center mb-4 flex-column flex-md-row">
-                                <div class="fs-4 text-dark">Rekening Anda</div>
-                                <div class="fs-6 text-muted mt-2 mt-md-0">No. Rekening: <?= $rekening['no_rek'] ?></div>
+                                <div class="fs-4 text-dark">Detail Kredit Anda</div>
+                                <div class="fs-6 text-muted mt-2 mt-md-0">No. Kredit: 1234567890</div>
                             </div>
-                            <!--end::Title-->
-                            <!--begin::Title-->
+                            <!--end::Credit Details-->
+
+                            <!--begin::Last Payment-->
                             <div class="d-flex justify-content-between align-items-center mb-4">
-                                <div class="fs-4 text-dark">Transaksi Terakhir</div>
-                                <a href="<?= base_url('pengguna/riwayat_transaksi') ?>"
-                                    class="btn btn-sm btn-light-primary border border-primary btn-sm text-sm py-1 px-2"
+                                <div class="fs-4 text-dark">Pembayaran Terakhir</div>
+                                <a href="<?= base_url('user/riwayat_pembayaran') ?>"
+                                    class="btn btn-sm btn-light-primary border border-primary text-sm py-1 px-2"
                                     style="font-size: 0.9em">Lihat Semua</a>
                             </div>
-                            <!--end::Title-->
-                            <!--begin::Transaction List-->
-                            <?php if (empty($history)): ?>
-                            <div class="d-flex justify-content-center align-items-center mb-3">
-                                <div class="text-muted">Tidak ada transaksi terbaru.</div>
-                            </div>
-                            <?php else: ?>
-                            <?php foreach ($history as $transaction): ?>
+                            <!--end::Last Payment-->
+
+                            <!--begin::Payment List-->
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <div class="d-flex flex-column">
-                                    <div class="text-dark"><?= ucwords(strtolower($transaction['deskripsi'])) ?></div>
-                                    <div class="text-muted">
-                                        <?= date('d M Y H:i', strtotime($transaction['created_at'])) ?>
-                                    </div>
+                                    <div class="text-dark">Pembayaran Bulan September</div>
+                                    <div class="text-muted">25 Sep 2023 14:30</div>
                                 </div>
                                 <div class="d-flex flex-column text-end">
-                                    <div class="text-dark"><?= $transaction['type'] == 'Incoming' ? '+' : '-' ?>Rp
-                                        <?= number_format($transaction['jumlah'], 0, ',', '.') ?></div>
-                                    <div class="text-muted"><?= ucfirst($transaction['type']) ?></div>
+                                    <div class="text-dark">-Rp <?= number_format(1000000, 0, ',', '.') ?></div>
+                                    <div class="text-muted">Outgoing</div>
                                 </div>
                             </div>
-                            <?php endforeach; ?>
-                            <?php endif; ?>
-                            <!--end::Transaction List-->
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="d-flex flex-column">
+                                    <div class="text-dark">Pembayaran Bulan Agustus</div>
+                                    <div class="text-muted">25 Aug 2023 14:30</div>
+                                </div>
+                                <div class="d-flex flex-column text-end">
+                                    <div class="text-dark">-Rp <?= number_format(1000000, 0, ',', '.') ?></div>
+                                    <div class="text-muted">Outgoing</div>
+                                </div>
+                            </div>
+                            <!--end::Payment List-->
+
+                            <!--begin::Total Outstanding-->
+                            <!-- <div class="d-flex justify-content-between align-items-center mt-4 pt-4 border-top">
+                                <div class="fs-4 text-dark">Total Tunggakan</div>
+                                <div class="fs-4 text-dark">Rp <?php number_format(3000000, 0, ',', '.') ?></div>
+                            </div> -->
+                            <!--end::Total Outstanding-->
+
+                            <!--begin::Upcoming Payments-->
+                            <div
+                                class="d-flex justify-content-between align-items-center mt-4 pt-4 border-top flex-column flex-md-row">
+                                <div class="d-flex flex-column mb-3 mb-md-0">
+                                    <div class="fs-4 text-dark">Tagihan Berikutnya</div>
+                                    <div class="text-muted">Jatuh Tempo: 25 Okt 2023</div>
+                                </div>
+                                <div class="d-flex flex-column text-lg-end">
+                                    <div class="fs-4 text-dark">Rp <?= number_format(1000000, 0, ',', '.') ?></div>
+                                    <a href="<?= base_url('user/bayar_kredit') ?>"
+                                        class="btn btn-sm btn-primary mt-2">Bayar Sekarang</a>
+                                </div>
+                            </div>
+                            <!--end::Upcoming Payments-->
                         </div>
                     </div>
                 </div>

@@ -5,46 +5,49 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->addRedirect('/', '/auth/login');
+$routes->get('/', 'Freeuser::index');
+// $routes->addRedirect('/', '/auth/login');
 $routes->get('run-migration', 'Home::runMigration');
 $routes->get('api/simper/(:num)', 'Api\SimperController::getSimperById/$1');
 // $routes->get('generate-bg-simper', 'DeptHead\PengajuanSimperController::generateIdCardBelakangBg');
 // $routes->get('update-ttd-bg-simper/(:num)', 'DeptHead\PengajuanSimperController::updateTtdBgSimper/$1');
+// $routes->group('admin', function($routes) {
+//     $routes->group('management_account', function($routes) {
+//         $routes->group('karyawan', function($routes) {
+//             $routes->get('/', 'Admin\ManagementAccount\KaryawanController::index');
+//             $routes->get('post-add', 'Admin\ManagementAccount\KaryawanController::postAdd');
+//         });
+//     });
+// });
 $routes->group('admin', function($routes) {
-    $routes->group('management_account', function($routes) {
-        $routes->group('karyawan', function($routes) {
-            $routes->get('/', 'Admin\ManagementAccount\KaryawanController::index');
-            $routes->get('post-add', 'Admin\ManagementAccount\KaryawanController::postAdd');
-        });
-    });
-});
-$routes->group('dept_head', function($routes) {
     $routes->group('id_card', function($routes) {
-        $routes->get('/', 'DeptHead\PengajuanMinePermitController::index');
-        $routes->get('detail/(:num)', 'DeptHead\PengajuanMinePermitController::detail/$1');
-        $routes->get('detail/id_card/(:num)', 'DeptHead\PengajuanMinePermitController::detailIDCard/$1');
-        $routes->post('post-instan-create', 'DeptHead\PengajuanMinePermitController::postInstanCreate');
-        $routes->post('post-ajukan-minepermit', 'DeptHead\PengajuanMinePermitController::postAjukanMinePermit');
-        $routes->post('post-delete', 'DeptHead\PengajuanMinePermitController::postDelete');
-        $routes->post('post-continue-done', 'DeptHead\PengajuanMinePermitController::postContinueDone');
-        $routes->get('detail-pengajuan/(:num)', 'DeptHead\PengajuanMinePermitController::detailPengajuan/$1');
+        $routes->get('/', 'Admin\PengajuanMinePermitController::index');
+        $routes->get('detail/(:num)', 'Admin\PengajuanMinePermitController::detail/$1');
+        $routes->get('detail/id_card/(:num)', 'Admin\PengajuanMinePermitController::detailIDCard/$1');
+        $routes->post('post-instan-create', 'Admin\PengajuanMinePermitController::postInstanCreate');
+        $routes->post('post-ajukan-minepermit', 'Admin\PengajuanMinePermitController::postAjukanMinePermit');
+        $routes->post('post-delete', 'Admin\PengajuanMinePermitController::postDelete');
+        $routes->post('post-continue-done', 'Admin\PengajuanMinePermitController::postContinueDone');
+        $routes->get('detail-pengajuan/(:num)', 'Admin\PengajuanMinePermitController::detailPengajuan/$1');
     });
     $routes->group('profile', function($routes) {
-        $routes->get('/', 'DeptHead\ProfileController::index');
-        $routes->post('reset-password', 'DeptHead\ProfileController::resetPassword');
+        $routes->get('/', 'Admin\ProfileController::index');
+        $routes->post('reset-password', 'Admin\ProfileController::resetPassword');
     });
     $routes->group('simper', function($routes) {
-        $routes->get('/', 'DeptHead\PengajuanSimperController::index');
-        $routes->get('detail/(:num)', 'DeptHead\PengajuanSimperController::detail/$1');
-        $routes->get('detail/simper/(:num)', 'DeptHead\PengajuanSimperController::detailIDCard/$1');
-        $routes->post('post-instan-create', 'DeptHead\PengajuanSimperController::postInstanCreate');
-        $routes->post('post-delete', 'DeptHead\PengajuanSimperController::postDelete');
-        $routes->post('post-ajukan-simper', 'DeptHead\PengajuanSimperController::postAjukanSimper');
-        $routes->post('post-continue-done', 'DeptHead\PengajuanSimperController::postContinueDone');
-        $routes->get('detail-pengajuan/(:num)', 'DeptHead\PengajuanSimperController::detailPengajuan/$1');
+        $routes->get('/', 'Admin\PengajuanSimperController::index');
+        $routes->get('detail/(:num)', 'Admin\PengajuanSimperController::detail/$1');
+        $routes->get('detail/simper/(:num)', 'Admin\PengajuanSimperController::detailIDCard/$1');
+        $routes->post('post-instan-create', 'Admin\PengajuanSimperController::postInstanCreate');
+        $routes->post('post-delete', 'Admin\PengajuanSimperController::postDelete');
+        $routes->post('post-ajukan-simper', 'Admin\PengajuanSimperController::postAjukanSimper');
+        $routes->post('post-continue-done', 'Admin\PengajuanSimperController::postContinueDone');
+        $routes->get('detail-pengajuan/(:num)', 'Admin\PengajuanSimperController::detailPengajuan/$1');
 
     });
-    $routes->get('dashboard', 'DeptHead\DashboardController::index');
+    $routes->get('dashboard', 'Admin\DashboardController::index');
+    $routes->get('profile-edit', 'Admin\ProfileController::profileEdit');
+    $routes->post('profile/post-edit', 'Admin\ProfileController::postEdit');
 });
 $routes->group('soh', function($routes) {
     $routes->group('id_card', function($routes) {
@@ -175,6 +178,16 @@ $routes->group('pengguna', function($routes) {
     });
     $routes->get('profile-edit', 'Pengguna\ProfileController::profileEdit');
     $routes->post('profile/post-edit', 'Pengguna\ProfileController::postEdit');
+});
+$routes->group('user', function($routes) {
+    $routes->get('dashboard', 'User\DashboardController::index');
+    $routes->get('ajukan-kredit', 'User\DashboardController::ajukanKredit');
+    $routes->group('profile', function($routes) {
+        $routes->get('/', 'User\ProfileController::index');
+        $routes->post('reset-password', 'User\ProfileController::resetPassword');
+    });
+    $routes->get('profile-edit', 'User\ProfileController::profileEdit');
+    $routes->post('profile/post-edit', 'User\ProfileController::postEdit');
 });
 
 $routes->group('scan', function($routes) {

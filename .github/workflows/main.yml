@@ -73,7 +73,8 @@ jobs:
         uses: burnett01/rsync-deployments@4.1
         with:
           # Menyinkronkans folder dspublic tanpa .env
-          switches: -avzr --delete --exclude=".env" --exclude="index.php" --exclude="cgi-bin/" --exclude="assets/" --exclude="uploads/"
+          switches: -avzr --delete --exclude=".env" --exclude="index.php" --exclude="cgi-bin/"
+          # switches: -avzr --delete --exclude=".env" --exclude="index.php" --exclude="cgi-bin/" --exclude="assets/" --exclude="uploads/"
           path: public/
           remote_path: /home/batuahcoba/domains/ujicoba.batuah.tech/public_html/
           remote_host: ujicoba.batuah.tech

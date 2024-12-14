@@ -73,34 +73,76 @@ class ProfileController extends BaseController
     }
 
     public function postEdit()
-{
-    $validation = \Config\Services::validation();
-
-    // Validasi input
-    $validation->setRules([
-        'nama' => 'required|string',
-    ]);
-
-    if (!$this->validate($validation->getRules())) {
-        // Ambil pesan error pertama
-        $errors = $validation->getErrors();
-        $firstError = array_values($errors)[0]; // Ambil error pertama
-
-        return redirect()->back()->withInput()->with('error', "Failed! " . $firstError);
-    }
-
-    $accountModel = new AccountModel();
-
-    // Data untuk tabel admin
-    $data = [
-        'nama' => $this->request->getPost('nama'),
+    {
+        $validation = \Config\Services::validation();
+    
+        // Validasi input
+        $validation->setRules([
+            'nama' => 'required|string',
+        ]);
+    
+        if (!$this->validate($validation->getRules())) {
+            // Ambil pesan error pertama
+            $errors = $validation->getErrors();
+            $firstError = array_values($errors)[0]; // Ambil error pertama
+    
+            return redirect()->back()->withInput()->with('error', "Failed! " . $firstError);
+        }
+    
+        $accountModel = new AccountModel();
+    
+        
+        $file = $this->request->getFile('pas_foto');
+        $filePath = '';
+    
+        // Data untuk tabel admin
+        $updateData = [
+            'nama' => $this->request->getPost('nama'),
+           
+        ];
+    
+        
+    
+       // Ambil base64 dari input
+       $croppedImage = $this->request->getPost('cropped_pas_foto'); // Ini adalah base64 string
+        //    dd($croppedImage); 
+       $filePath = '';
+       if (!empty($croppedImage)) {
+           // Memisahkan base64 data dan headernya (menghapus bagian 'data:image/png;base64,')
+           list($type, $data) = explode(';', $croppedImage); // Pisahkan bagian tipe MIME
+           list(, $data) = explode(',', $data); // Pisahkan bagian base64 data
+    
+           // Decode base64 menjadi data gambar
+           $imageData = base64_decode($data);
+           
+           // Cek jika data gambar berhasil didekodekan
+           if ($imageData === false) {
+               // Jika gagal mendecode base64
+               return redirect()->back()->with('error', 'Gagal mendekode gambar');
+           }
+    
+           // Tentukan nama file dan path untuk menyimpan gambar
+           $imageName = uniqid() . '.jpg'; // Atau format lain sesuai kebutuhan
+           $uploadDir = 'uploads/pas_foto/'; // Tentukan folder untuk menyimpan gambar
+           $updateData['pas_foto'] = $imageName; // Simpan nama file ke dalam data
+        session()->set("pas_foto", $updateData['pas_foto']);
+           
+           // Pastikan folder untuk menyimpan gambar ada
+           if (!is_dir($uploadDir)) {
+               mkdir($uploadDir, 0777, true); // Membuat folder jika belum ada
+           }
+    
+           $filePath = $uploadDir . $imageName; // Path lengkap untuk menyimpan gambar
+           file_put_contents($filePath, $imageData);
+    
+           
+       }
        
-    ];
-
-    // Simpan data admin
-    $accountModel->update(session("user_id"), $data);
-    session()->set("nama", $data['nama']);
-
-    return redirect()->to('/pengguna/profile')->with('success', 'Berhasil! profile berhasil diperbarui.');
-}
+    
+        // Simpan data admin
+        $accountModel->update(session("user_id"), $updateData);
+        session()->set("nama", $updateData['nama']);
+    
+        return redirect()->to('/pengguna/profile')->with('success', 'Berhasil! profile berhasil diperbarui.');
+    }
 }
