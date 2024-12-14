@@ -45,6 +45,7 @@ class TransferController extends BaseController
                 ->where('rekenings.no_rek', $_GET['no_rek'])
                 ->first()['nama'];
         }
+        // dd($data['no_rek']);
         // $data['company'] = $companyModel->find($companyId);
         // $data['anggota'] = $anggotaModel->getAnggotaData($companyI
         return view('pengguna/transfer', $data);
@@ -54,12 +55,13 @@ class TransferController extends BaseController
         $rekeningModel = new RekeningModel();
         $historyModel = new HistoryModel();
         $db = \Config\Database::connect();
-        // $db->transStart();
+        $db->transStart();
         
 
         $accountNumber = $this->request->getPost('account_number');
         $amount = $this->request->getPost('amount');
         $userId = session()->get('user_id');
+        // dd($accountNumber);
 
         // Validate amount
         if ($amount <= 0 || $amount < 10000) {
@@ -114,11 +116,11 @@ class TransferController extends BaseController
             'jumlah' => $amount,
         ]);
 
-        // $db->transComplete();
+        $db->transComplete();
 
-        // if ($db->transStatus() === FALSE) {
-        //     return redirect()->back()->with('error', 'Terjadi kesalahan saat melakukan transfer.');
-        // }
+        if ($db->transStatus() === FALSE) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat melakukan transfer.');
+        }
 
         return redirect()->to('/pengguna/transfer')->with('success', 'Transfer berhasil dilakukan.');
     }

@@ -181,10 +181,14 @@
                         <form action="<?= base_url('pengguna/transfer/post-transfer'); ?>" method="post">
                             <?= csrf_field(); ?>
                             <div class="mb-4 mx-lg-5 px-lg-5">
-                                <label class="form-label">Nomor Rekening Tujuan</label>
-                                <input type="text" name="account_number" value="<?= $no_rek ?? ''; ?>"
-                                    class="form-control form-control-lg" <?= isset($no_rek) ? 'disabled' : ''; ?>
-                                    placeholder="Masukkan nomor rekening tujuan" required>
+                                <label class="form-label">Nomor Rekening Tujuan
+                                    <?= isset($no_rek) ? $no_rek: ''; ?></label>
+                                <input type="text" name="account_number" value="<?= isset($no_rek) ? $no_rek: ''; ?>"
+                                    class="form-control form-control-lg" placeholder="Masukkan nomor rekening tujuan"
+                                    required <?= isset($no_rek) ? 'disabled' : ''; ?>>
+                                <?php if(isset($no_rek) && isset($account_name)): ?>
+                                <input type="hidden" name="account_number" value="<?= isset($no_rek) ? $no_rek: ''; ?>">
+                                <?php endif; ?>
                             </div>
                             <?php if(isset($no_rek) && isset($account_name)): ?>
                             <div class="mb-4 mx-lg-5 px-lg-5">
