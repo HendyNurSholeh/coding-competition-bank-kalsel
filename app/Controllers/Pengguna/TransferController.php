@@ -42,7 +42,7 @@ class TransferController extends BaseController
             $data['account_name'] = $rekeningModel
                 ->select('accounts.nama')
                 ->join('accounts', 'accounts.id = rekenings.account_id')
-                ->where('rekenings.account_id', session('user_id'))
+                ->where('rekenings.no_rek', $_GET['no_rek'])
                 ->first()['nama'];
         }
         // $data['company'] = $companyModel->find($companyId);
