@@ -38,12 +38,13 @@
                             </div>
                             <!--end::Avatar-->
                             <!--begin::Name-->
-                            <div class="fs-2 fw-bold text-white mb-2 text-center">Hai, Hendy!</div>
+                            <div class="fs-2 fw-bold text-white mb-2 text-center">Hai,
+                                <?= ucwords(strtolower(session('nama'))); ?>!</div>
                             <!--end::Name-->
                             <!--begin::Position-->
                             <div class="fs-4 text-white mb-2 text-center">Saldo Anda</div>
                             <div class="fs-1 fw-bold text-white text-center">Rp
-                                <?= number_format("2000000", 0, ',', '.') ?>
+                                <?= number_format($rekening['saldo'], 0, ',', '.') ?>
                             </div>
                             <!--end::Position-->
                             <!--begin::Actions-->
@@ -57,7 +58,13 @@
                         </div>
                     </div>
                     <div class="col-lg-8">
-                        <div class="d-flex flex-column py-10 bg-white rounded">
+                        <div class="d-flex flex-column pt-3 py-10  bg-white rounded">
+                            <!--begin::Title-->
+                            <div class="d-flex justify-content-between align-items-center mb-4 flex-column flex-md-row">
+                                <div class="fs-4 text-dark">Rekening Anda</div>
+                                <div class="fs-6 text-muted mt-2 mt-md-0">No. Rekening: <?= $rekening['no_rek'] ?></div>
+                            </div>
+                            <!--end::Title-->
                             <!--begin::Title-->
                             <div class="d-flex justify-content-between align-items-center mb-4">
                                 <div class="fs-4 text-dark">Transaksi Terakhir</div>

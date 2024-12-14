@@ -14,7 +14,7 @@ License: For each use you must have a valid license purchased only from above li
 <!--begin::Head-->
 
 <head>
-    <title>United Tractors</title>
+    <title>Hepi GO</title>
     <link rel="shortcut icon" href="<?=base_url()?>/image/logo-cropped.png" />
     <meta charset="utf-8" />
     <meta name="description"

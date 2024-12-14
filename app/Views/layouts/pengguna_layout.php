@@ -15,7 +15,7 @@ License: For each use you must have a valid license purchased only from above li
 
 <head>
     <base href="">
-    <title>United Tractors</title>
+    <title>Hepi GO</title>
     <meta name="description"
         content="Ceres admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." />
     <meta name="keywords"
@@ -240,12 +240,12 @@ License: For each use you must have a valid license purchased only from above li
 
         <div class="navigation-mob">
             <ul>
-                <li class="list <?= $activeMenu == "profile" ? "active" : ""; ?>">
-                    <a href="<?=base_url()?>/pengguna/profile">
+                <li class="list <?= $activeMenu == "topup" ? "active" : ""; ?>">
+                    <a href="<?=base_url()?>/pengguna/topup">
                         <span class="icon">
-                            <ion-icon name="person-outline" style="font-size: 1.15em !important;"></ion-icon>
+                            <ion-icon name="wallet-outline"></ion-icon>
                         </span>
-                        <span class="text">Profile</span>
+                        <span class="text">Top Up</span>
                         <span class="circle"></span>
                     </a>
                 </li>
@@ -267,15 +267,16 @@ License: For each use you must have a valid license purchased only from above li
                         <span class="circle"></span>
                     </a>
                 </li>
-                <li class="list <?= $activeMenu == "topup" ? "active" : ""; ?>">
-                    <a href="<?=base_url()?>/pengguna/topup">
+                <li class="list <?= $activeMenu == "profile" ? "active" : ""; ?>">
+                    <a href="<?=base_url()?>/pengguna/profile">
                         <span class="icon">
-                            <ion-icon name="wallet-outline"></ion-icon>
+                            <ion-icon name="person-outline" style="font-size: 1.15em !important;"></ion-icon>
                         </span>
-                        <span class="text">Top Up</span>
+                        <span class="text">Profile</span>
                         <span class="circle"></span>
                     </a>
                 </li>
+
                 <!-- <li class="list <?= $activeMenu == "profile" ? "active" : ""; ?>">
                     <a href="<?=base_url()?>/penggunaan/profile">
                         <span class="icon">
@@ -388,18 +389,19 @@ License: For each use you must have a valid license purchased only from above li
                                                 <span class="menu-arrow d-lg-none"></span>
                                             </span>
                                         </a>
+
+                                        <div data-kt-menu-placement="bottom-start"
+                                            class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "topup" ? "here show " : ""; ?>"">
+                                            <a href=" <?= base_url(); ?>/pengguna/topup" class="menu-link py-3 px-5">
+                                            <span class="menu-title">Top Up</span>
+                                            <span class="menu-arrow d-lg-none"></span>
+                                            </a>
+                                        </div>
                                         <div data-kt-menu-placement="bottom-start"
                                             class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "transfer" ? "here show " : ""; ?>"">
                                             <a href=" <?= base_url(); ?>/pengguna/transfer"
                                             class="menu-link py-3 px-5">
                                             <span class="menu-title">Transfer</span>
-                                            <span class="menu-arrow d-lg-none"></span>
-                                            </a>
-                                        </div>
-                                        <div data-kt-menu-placement="bottom-start"
-                                            class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "topup" ? "here show " : ""; ?>"">
-                                            <a href=" <?= base_url(); ?>/pengguna/topup" class="menu-link py-3 px-5">
-                                            <span class="menu-title">Top Up</span>
                                             <span class="menu-arrow d-lg-none"></span>
                                             </a>
                                         </div>
@@ -438,7 +440,7 @@ License: For each use you must have a valid license purchased only from above li
                                     <span class="menu-title text-white fw-bold ">
                                         <span class="d-flex align-items-center px-1" style="font-size: 93% !important;">
 
-                                            <?= "United Tractors"; ?>
+                                            <?= "Hepi GO"; ?>
                                         </span>
                                         <div class="d-flex align-items-end">
                                             <span
@@ -541,7 +543,7 @@ License: For each use you must have a valid license purchased only from above li
                         <div class="text-dark order-2 order-md-1">
                             <span class="text-muted fw-bold me-1">2024©</span>
                             <a href="https://keenthemes.com" target="_blank" class="text-gray-800 text-hover-primary">PT
-                                United Tractors</a>
+                                Hepi GO</a>
                         </div>
                         <!--end::Copyright-->
                         <!--end::Menu-->

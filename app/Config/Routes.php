@@ -154,23 +154,24 @@ $routes->group('pengguna', function($routes) {
     });
     $routes->group('topup', function($routes) {
         $routes->get('/', 'Pengguna\TopupController::index');
+        $routes->post('post-topup', 'Pengguna\TopupController::postTopup');
         $routes->get('pernyataan-disiplin/(:num)', 'Pengguna\TopupController::pernyataanDisiplin/$1');
-        $routes->post('post-pernyataan-disiplin/(:num)', 'Pengguna\TopupController::postPernyataanDisiplin/$1');
         $routes->get('post-test/(:num)/(:num)', 'Pengguna\TopupController::postTest/$1/$2');
         $routes->post('post-post-test/(:num)/(:num)', 'Pengguna\TopupController::postPostTest/$1/$2');
         $routes->post('post-create-biodata', 'Pengguna\TopupController::postCreateBiodata');
     });
     $routes->group('transfer', function($routes) {
         $routes->get('/', 'Pengguna\TransferController::index');
-        $routes->get('pernyataan-disiplin/(:num)', 'Pengguna\TransferController::pernyataanDisiplin/$1');
+        $routes->post('post-transfer', 'Pengguna\TransferController::postTransfer');
         $routes->post('post-pernyataan-disiplin/(:num)', 'Pengguna\TransferController::postPernyataanDisiplin/$1');
+        $routes->get('pernyataan-disiplin/(:num)', 'Pengguna\TransferController::pernyataanDisiplin/$1');
         $routes->get('post-test/(:num)/(:num)', 'Pengguna\TransferController::postTest/$1/$2');
         $routes->post('post-post-test/(:num)/(:num)', 'Pengguna\TransferController::postPostTest/$1/$2');
         $routes->post('post-create-biodata', 'Pengguna\TransferController::postCreateBiodata');
     });
     $routes->group('profile', function($routes) {
-        $routes->get('/', 'pengguna\ProfileController::index');
-        $routes->post('reset-password', 'pengguna\ProfileController::resetPassword');
+        $routes->get('/', 'Pengguna\ProfileController::index');
+        $routes->post('reset-password', 'Pengguna\ProfileController::resetPassword');
     });
 });
 

@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\AnswerHistoryModel;
 use App\Models\OptionModel;
 use App\Models\QuizModel;
+use App\Models\RekeningModel;
 use App\Models\SimperModel;
 use App\Models\UnitRecomendationModel;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -39,6 +40,25 @@ class TopupController extends BaseController
         // $data['company'] = $companyModel->find($companyId);
         // $data['anggota'] = $anggotaModel->getAnggotaData($companyId);
         return view('pengguna/topup', $data);
+    }
+
+    public function postTopup()
+    {
+        $amount = $this->request->getPost('amount');
+        $userId = session()->get('user_id');
+
+        // Validate the amount
+        if ($amount <= 0) {
+            return redirect()->back()->with('error', 'Jumlah top up harus lebih dari 0.');
+        }
+
+        // Update the user's balance (assuming you have a UserModel and a balance field)
+        $userModel = new RekeningModel();
+        $user = $userModel->where("account_id", $userId)->first();
+        $user['saldo'] += $amount;
+        $userModel->update($user['id'], $user);
+
+        return redirect()->to('/pengguna/topup')->with('success', 'Top up berhasil.');
     }
     public function pernyataanDisiplin($simperId): string
     {
@@ -120,6 +140,9 @@ class TopupController extends BaseController
         }
         return redirect()->to("/pengguna/simper/post-test/$simperId/2");
     }
+
+
+
     public function postCreateBiodata(){
         // dd($this->request->getPost());
 

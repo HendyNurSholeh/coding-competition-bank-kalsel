@@ -182,13 +182,15 @@
                         <div class="mb-4">
                             <img src="<?= base_url('uploads/qrcode/1.png'); ?>" alt="QR Code" class="image-preview">
                         </div>
-                        <div class="mb-4 mx-lg-5 px-lg-5">
-                            <label class="form-label">Jumlah Top Up</label>
-                            <input type="number" name="amount" class="form-control form-control-lg "
-                                placeholder="Masukkan jumlah top up" required>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary btn-custom">Top Up Sekarang</button>
+                        <form action="<?= base_url('pengguna/topup/post-topup'); ?>" method="post">
+                            <?= csrf_field(); ?>
+                            <div class="mb-4 mx-lg-5 px-lg-5">
+                                <label class="form-label">Jumlah Top Up</label>
+                                <input type="number" name="amount" class="form-control form-control-lg"
+                                    placeholder="Masukkan jumlah top up" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-custom">Top Up Sekarang</button>
+                        </form>
                     </div>
                 </div>
             </div>

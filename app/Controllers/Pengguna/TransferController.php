@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\AnswerHistoryModel;
 use App\Models\OptionModel;
 use App\Models\QuizModel;
+use App\Models\RekeningModel;
 use App\Models\SimperModel;
 use App\Models\UnitRecomendationModel;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -30,8 +31,10 @@ class TransferController extends BaseController
         // session()->set("company_id", $companyId);
         // $companyModel = new CompanyModel();
         // $anggotaModel = new AnggotaModel();
+        $rekeningModel = new RekeningModel();
         $data = [
             "activeMenu" => "transfer",
+            "rekening" => $rekeningModel->where("account_id", session('user_id'))->first()
         ];
         if(isset($_GET["idSimper"])){
             $data['idSimepr'] = $_GET['idSimper'];
@@ -39,6 +42,37 @@ class TransferController extends BaseController
         // $data['company'] = $companyModel->find($companyId);
         // $data['anggota'] = $anggotaModel->getAnggotaData($companyI
         return view('pengguna/transfer', $data);
+    }
+    public function postTransfer()
+    {
+        $rekeningModel = new RekeningModel();
+
+        $accountNumber = $this->request->getPost('account_number');
+        $amount = $this->request->getPost('amount');
+        $userId = session()->get('user_id');
+
+        // Retrieve sender's account
+        $senderAccount = $rekeningModel->where('account_id', $userId)->first();
+
+        // Check if sender has enough balance
+        if ($senderAccount['saldo'] < $amount) {
+            return redirect()->back()->with('error', 'Saldo tidak mencukupi untuk melakukan transfer.');
+        }
+
+        // Retrieve recipient's account
+        $recipientAccount = $rekeningModel->where('no_rek', $accountNumber)->first();
+
+        if (!$recipientAccount) {
+            return redirect()->back()->with('error', 'Nomor rekening tujuan tidak ditemukan.');
+        }
+
+        // Deduct amount from sender's account
+        $rekeningModel->update($senderAccount['id'], ['saldo' => $senderAccount['saldo'] - $amount]);
+
+        // Add amount to recipient's account
+        $rekeningModel->update($recipientAccount['id'], ['saldo' => $recipientAccount['saldo'] + $amount]);
+
+        return redirect()->to('/pengguna/transfer')->with('success', 'Transfer berhasil dilakukan.');
     }
     public function pernyataanDisiplin($simperId): string
     {

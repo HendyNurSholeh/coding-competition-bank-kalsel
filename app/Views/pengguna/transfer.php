@@ -178,17 +178,20 @@
                         <p class="card-text text-muted mb-4">
                             Transfer saldo Anda dengan mudah. Masukkan nomor rekening tujuan dan jumlah transfer.
                         </p>
-                        <div class="form-group mb-4">
-                            <label class="form-label">Nomor Rekening Tujuan</label>
-                            <input type="text" name="account_number" class="form-control form-control-lg"
-                                placeholder="Masukkan nomor rekening tujuan" required>
-                        </div>
-                        <div class="form-group mb-4">
-                            <label class="form-label">Jumlah Transfer</label>
-                            <input type="number" name="amount" class="form-control form-control-lg"
-                                placeholder="Masukkan jumlah transfer" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-lg w-100">Transfer Sekarang</button>
+                        <form action="<?= base_url('pengguna/transfer/post-transfer'); ?>" method="post">
+                            <?= csrf_field(); ?>
+                            <div class="mb-4 mx-lg-5 px-lg-5">
+                                <label class="form-label">Nomor Rekening Tujuan</label>
+                                <input type="text" name="account_number" class="form-control form-control-lg"
+                                    placeholder="Masukkan nomor rekening tujuan" required>
+                            </div>
+                            <div class="mb-4 mx-lg-5 px-lg-5">
+                                <label class="form-label">Jumlah Transfer</label>
+                                <input type="number" name="amount" class="form-control form-control-lg"
+                                    placeholder="Masukkan jumlah transfer" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-custom">Transfer Sekarang</button>
+                        </form>
                     </div>
                 </div>
             </div>
