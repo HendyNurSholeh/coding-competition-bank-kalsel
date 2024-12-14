@@ -183,10 +183,10 @@
                             <div class="mb-4 mx-lg-5 px-lg-5">
                                 <label class="form-label">Nomor Rekening Tujuan</label>
                                 <input type="text" name="account_number" value="<?= $no_rek ?? ''; ?>"
-                                    class="form-control form-control-lg" <?= $no_rek ? 'disabled' : ''; ?>
+                                    class="form-control form-control-lg" <?= isset($no_rek) ? 'disabled' : ''; ?>
                                     placeholder="Masukkan nomor rekening tujuan" required>
                             </div>
-                            <?php if($no_rek): ?>
+                            <?php if(isset($no_rek) && isset($account_name)): ?>
                             <div class="mb-4 mx-lg-5 px-lg-5">
                                 <label class="form-label">Atas Nama</label>
                                 <input type="text" name="account_name" value="<?= $account_name ?? ''; ?>"
