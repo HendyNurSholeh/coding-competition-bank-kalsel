@@ -173,6 +173,8 @@ $routes->group('pengguna', function($routes) {
         $routes->get('/', 'Pengguna\ProfileController::index');
         $routes->post('reset-password', 'Pengguna\ProfileController::resetPassword');
     });
+    $routes->get('profile-edit', 'Pengguna\ProfileController::profileEdit');
+    $routes->post('profile/post-edit', 'Pengguna\ProfileController::postEdit');
 });
 
 $routes->group('scan', function($routes) {

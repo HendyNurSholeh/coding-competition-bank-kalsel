@@ -111,6 +111,9 @@
                         <div class="card-title m-0">
                             <h3 class="fw-bolder m-0">Profile Detail</h3>
                         </div>
+                        <a href="profile-edit"
+                            class="btn btn-sm btn-light-primary border border-primary align-self-center">Edit
+                            Profile</a>
                         <!--end::Card title-->
                     </div>
                     <!--begin::Card header-->

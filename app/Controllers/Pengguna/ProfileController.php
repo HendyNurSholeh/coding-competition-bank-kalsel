@@ -53,4 +53,54 @@ class ProfileController extends BaseController
     
         return redirect()->to('/pengguna/profile')->with('success', 'Success!, Password berhasil diubah.');
     }
+
+
+    public function profileEdit (): string
+    {
+        $session = session();
+        $accountModel = new AccountModel();
+
+        $userId = $session->get('user_id');
+
+        // Inisialisasi variabel yang akan dipakai di view
+        $profileData = [];
+        // Tambahkan data username dari akun ke profileData
+        $profileData = $accountModel->find($userId);
+        
+
+        // Render view dengan data yang sudah diambil
+        return view('pengguna/profile-edit', ['profileData' => $profileData, 'activeMenu' => 'profile']);
+    }
+
+    public function postEdit()
+{
+    $validation = \Config\Services::validation();
+
+    // Validasi input
+    $validation->setRules([
+        'nama' => 'required|string',
+    ]);
+
+    if (!$this->validate($validation->getRules())) {
+        // Ambil pesan error pertama
+        $errors = $validation->getErrors();
+        $firstError = array_values($errors)[0]; // Ambil error pertama
+
+        return redirect()->back()->withInput()->with('error', "Failed! " . $firstError);
+    }
+
+    $accountModel = new AccountModel();
+
+    // Data untuk tabel admin
+    $data = [
+        'nama' => $this->request->getPost('nama'),
+       
+    ];
+
+    // Simpan data admin
+    $accountModel->update(session("user_id"), $data);
+    session()->set("nama", $data['nama']);
+
+    return redirect()->to('/pengguna/profile')->with('success', 'Berhasil! profile berhasil diperbarui.');
+}
 }
