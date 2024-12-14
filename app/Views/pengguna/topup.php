@@ -187,7 +187,8 @@
                                             lain.</p>
                                         <div class="mb-4">
                                             <img src="<?= base_url('uploads/qrcode/') . $rekening['qr_code']; ?>"
-                                                alt="QR Code" class="image-preview">
+                                                alt="QR Code" class="image-preview"
+                                                style="width: 120px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border: 1px solid #ddd; padding: 10px; border-radius: 10px;">
                                         </div>
                                         <p class="text-muted-custom">Setelah scan, orang lain dapat mengirim saldo ke
                                             akun Anda.</p>
