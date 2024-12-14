@@ -4,6 +4,7 @@ namespace App\Controllers\Pengguna;
 
 use App\Controllers\BaseController;
 use App\Models\AnswerHistoryModel;
+use App\Models\HistoryModel;
 use App\Models\OptionModel;
 use App\Models\QuizModel;
 use App\Models\RekeningModel;
@@ -36,8 +37,13 @@ class TransferController extends BaseController
             "activeMenu" => "transfer",
             "rekening" => $rekeningModel->where("account_id", session('user_id'))->first()
         ];
-        if(isset($_GET["idSimper"])){
-            $data['idSimepr'] = $_GET['idSimper'];
+        if(isset($_GET["no_rek"])){
+            $data['no_rek'] = $_GET['no_rek'];
+            $data['account_name'] = $rekeningModel
+                ->select('accounts.nama')
+                ->join('accounts', 'accounts.id = rekenings.account_id')
+                ->where('rekenings.account_id', session('user_id'))
+                ->first()['nama'];
         }
         // $data['company'] = $companyModel->find($companyId);
         // $data['anggota'] = $anggotaModel->getAnggotaData($companyI
@@ -46,22 +52,42 @@ class TransferController extends BaseController
     public function postTransfer()
     {
         $rekeningModel = new RekeningModel();
+        $historyModel = new HistoryModel();
+        $db = \Config\Database::connect();
+        // $db->transStart();
+        
 
         $accountNumber = $this->request->getPost('account_number');
         $amount = $this->request->getPost('amount');
         $userId = session()->get('user_id');
 
+        // Validate amount
+        if ($amount <= 0 || $amount < 10000) {
+            return redirect()->back()->with('error', 'Jumlah transfer tidak valid. Minimal transfer adalah 10000.');
+        }
+
         // Retrieve sender's account
         $senderAccount = $rekeningModel->where('account_id', $userId)->first();
+        if (!$senderAccount) {
+            return redirect()->back()->with('error', 'Akun pengirim tidak ditemukan.');
+        }
 
         // Check if sender has enough balance
         if ($senderAccount['saldo'] < $amount) {
             return redirect()->back()->with('error', 'Saldo tidak mencukupi untuk melakukan transfer.');
         }
 
-        // Retrieve recipient's account
-        $recipientAccount = $rekeningModel->where('no_rek', $accountNumber)->first();
+        // Check if the recipient account is the same as the sender's account
+        if ($senderAccount['no_rek'] == $accountNumber) {
+            return redirect()->back()->with('error', 'Tidak dapat melakukan transfer ke rekening sendiri.');
+        }
 
+        $recipientAccount = $rekeningModel
+                ->select('rekenings.*, accounts.nama')
+                ->join('accounts', 'accounts.id = rekenings.account_id')
+                ->where('no_rek', $accountNumber)
+                ->first();
+        
         if (!$recipientAccount) {
             return redirect()->back()->with('error', 'Nomor rekening tujuan tidak ditemukan.');
         }
@@ -71,6 +97,28 @@ class TransferController extends BaseController
 
         // Add amount to recipient's account
         $rekeningModel->update($recipientAccount['id'], ['saldo' => $recipientAccount['saldo'] + $amount]);
+
+        // Insert history for sender
+        $historyModel->insert([
+            'no_rek' => $senderAccount['no_rek'],
+            'deskripsi' => $recipientAccount['nama'],
+            'type' => 'Outgoing',
+            'jumlah' => $amount,
+        ]);
+
+        // Insert history for recipient
+        $historyModel->insert([
+            'no_rek' => $recipientAccount['no_rek'],
+            'deskripsi' => session('nama'),
+            'type' => 'Incoming',
+            'jumlah' => $amount,
+        ]);
+
+        // $db->transComplete();
+
+        // if ($db->transStatus() === FALSE) {
+        //     return redirect()->back()->with('error', 'Terjadi kesalahan saat melakukan transfer.');
+        // }
 
         return redirect()->to('/pengguna/transfer')->with('success', 'Transfer berhasil dilakukan.');
     }

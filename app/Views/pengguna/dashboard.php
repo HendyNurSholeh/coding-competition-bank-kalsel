@@ -74,36 +74,27 @@
                             </div>
                             <!--end::Title-->
                             <!--begin::Transaction List-->
+                            <?php if (empty($history)): ?>
+                            <div class="d-flex justify-content-center align-items-center mb-3">
+                                <div class="text-muted">Tidak ada transaksi terbaru.</div>
+                            </div>
+                            <?php else: ?>
+                            <?php foreach ($history as $transaction): ?>
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <div class="d-flex flex-column">
-                                    <div class="text-dark">Joko Ariyansyah</div>
-                                    <div class="text-muted">01 Oct 2023</div>
+                                    <div class="text-dark"><?= ucwords(strtolower($transaction['deskripsi'])) ?></div>
+                                    <div class="text-muted">
+                                        <?= date('d M Y H:i', strtotime($transaction['created_at'])) ?>
+                                    </div>
                                 </div>
                                 <div class="d-flex flex-column text-end">
-                                    <div class="text-dark">-Rp 50.000</div>
-                                    <div class="text-muted">Outgoing</div>
+                                    <div class="text-dark"><?= $transaction['type'] == 'Incoming' ? '+' : '-' ?>Rp
+                                        <?= number_format($transaction['jumlah'], 0, ',', '.') ?></div>
+                                    <div class="text-muted"><?= ucfirst($transaction['type']) ?></div>
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <div class="d-flex flex-column">
-                                    <div class="text-dark">Budi Santoso</div>
-                                    <div class="text-muted">02 Oct 2023</div>
-                                </div>
-                                <div class="d-flex flex-column text-end">
-                                    <div class="text-dark">-Rp 150.000</div>
-                                    <div class="text-muted">Outgoing</div>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <div class="d-flex flex-column">
-                                    <div class="text-dark">Top Up</div>
-                                    <div class="text-muted">03 Oct 2023</div>
-                                </div>
-                                <div class="d-flex flex-column text-end">
-                                    <div class="text-dark">+Rp 200.000</div>
-                                    <div class="text-muted">Incoming</div>
-                                </div>
-                            </div>
+                            <?php endforeach; ?>
+                            <?php endif; ?>
                             <!--end::Transaction List-->
                         </div>
                     </div>

@@ -127,7 +127,8 @@ License: For each use you must have a valid license purchased only from above li
 
                     <!--begin::Form-->
                     <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form"
-                        action="<?= base_url()?>/auth/login/post-login" method="post">
+                        action="<?= base_url()?>/auth/login/post-login<?= isset($_GET['id']) ? '?id=' . $_GET['id'] : ''; ?>"
+                        method="post">
                         <?= csrf_field(); ?>
 
                         <div class="text-center mb-10">

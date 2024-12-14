@@ -182,9 +182,17 @@
                             <?= csrf_field(); ?>
                             <div class="mb-4 mx-lg-5 px-lg-5">
                                 <label class="form-label">Nomor Rekening Tujuan</label>
-                                <input type="text" name="account_number" class="form-control form-control-lg"
+                                <input type="text" name="account_number" value="<?= $no_rek ?? ''; ?>"
+                                    class="form-control form-control-lg" <?= $no_rek ? 'disabled' : ''; ?>
                                     placeholder="Masukkan nomor rekening tujuan" required>
                             </div>
+                            <?php if($no_rek): ?>
+                            <div class="mb-4 mx-lg-5 px-lg-5">
+                                <label class="form-label">Atas Nama</label>
+                                <input type="text" name="account_name" value="<?= $account_name ?? ''; ?>"
+                                    class="form-control form-control-lg" disabled required>
+                            </div>
+                            <?php endif; ?>
                             <div class="mb-4 mx-lg-5 px-lg-5">
                                 <label class="form-label">Jumlah Transfer</label>
                                 <input type="number" name="amount" class="form-control form-control-lg"

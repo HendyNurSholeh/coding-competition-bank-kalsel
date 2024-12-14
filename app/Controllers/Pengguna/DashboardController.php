@@ -3,6 +3,7 @@
 namespace App\Controllers\Pengguna;
 
 use App\Controllers\BaseController;
+use App\Models\HistoryModel;
 use App\Models\RekeningModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -10,18 +11,21 @@ class DashboardController extends BaseController
 {
     public function index(): string
     {
-        // session()->set("company_id", $companyId);
-        // $companyModel = new CompanyModel();
         $rekeningModel = new RekeningModel();
+        $historyModel = new HistoryModel();
+        $rekening = $rekeningModel->where("account_id", session('user_id'))->first();
+        $history = $historyModel->where("no_rek", $rekening['no_rek'])->orderBy('created_at', 'DESC')->limit(3)->findAll();
+
         $data = [
             "activeMenu" => "dashboard",
-            "rekening" => $rekeningModel->where("account_id", session('user_id'))->first()
+            "rekening" => $rekening,
+            "history" => $history
         ];
-        // $data['company'] = $companyModel->find($companyId);
-        // $data['anggota'] = $anggotaModel->getAnggotaData($companyId);
+
         return view('pengguna/dashboard', $data);
     }
-        public function ajukanMinePermit(): string
+
+    public function ajukanMinePermit(): string
     {
         // session()->set("company_id", $companyId);
         // $companyModel = new CompanyModel();

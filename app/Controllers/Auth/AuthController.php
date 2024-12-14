@@ -8,6 +8,12 @@ use App\Models\AnggotaModel;
 use App\Models\CompanyModel;
 use App\Models\RekeningModel;
 use CodeIgniter\Controller;
+use Endroid\QrCode\Color\Color;
+use Endroid\QrCode\Encoding\Encoding;
+use Endroid\QrCode\ErrorCorrectionLevel;
+use Endroid\QrCode\Logo\Logo;
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Writer\PngWriter;
 
 class AuthController extends Controller
 {
@@ -34,7 +40,11 @@ class AuthController extends Controller
             $session->set('username', $account['username']);
             $session->set('nama', $account['nama']);
             if ($account['level'] == "pengguna") {
-                return redirect()->to('../../pengguna/dashboard');
+                if(isset($_GET['id'])){
+                    return redirect()->to('../../pengguna/transfer?no_rek=' .  $_GET['id']);
+                } else{
+                    return redirect()->to('../../pengguna/dashboard');
+                }
             } else if ($account['level'] == "admin") {
                 return redirect()->to('../../admin/dashboard');
             }
@@ -88,12 +98,15 @@ class AuthController extends Controller
         $accountModel->insert($data);
         $accountId = $accountModel->insertID();
 
+        $no_rek =  mt_rand(1000000000, 9999999999);
+        $qrfilename = $this->generateQRCode($no_rek);
         // Simpan data rekening baru
         $rekeningData = [
             'account_id' => $accountId,
             'saldo' => 0,
             'status' => 'menunggu',
-            'no_rek' => mt_rand(1000000000, 9999999999),
+            'qr_code' => $qrfilename,
+            'no_rek' =>$no_rek,
         ];
         $rekeningModel->insert($rekeningData);
 
@@ -107,12 +120,12 @@ class AuthController extends Controller
         return redirect()->to('/auth/login')->with('success', 'Berhasil daftar akun!, silahkan login.');
     }
 
-    private function generateQRCode($data)
+    private function generateQRCode($id)
     {
-        $logoPath = "image/greater-satui.png"; // Path ke logo Anda   
+        $logoPath = "image/logo-cropped-circle.png"; // Path ke logo Anda   
 
         // Buat QR Code
-        $qrCode = QrCode::create(base_url("scan/simper/" . $data)) // Ganti dengan URL yang diinginkan
+        $qrCode = QrCode::create(base_url("auth/login?id=" . $id)) // Ganti dengan URL yang diinginkan
             ->setEncoding(new Encoding('UTF-8'))
             ->setErrorCorrectionLevel(ErrorCorrectionLevel::High) // Gunakan tingkat koreksi yang lebih tinggi
             ->setSize(630) // Ukuran QR Code
@@ -133,7 +146,12 @@ class AuthController extends Controller
 
         // Simpan QR code ke file dengan nama unik
         $uniqueFileName = uniqid('qrcode_', true) . '.png';
-        $outputPath = 'public/' . $uniqueFileName;
+        $outputPath = 'uploads/qrcode/' . $uniqueFileName;
+
+        // Simpan file menggunakan move_uploaded_file
+        if (!is_dir('uploads/qrcode')) {
+            mkdir('uploads/qrcode', 0777, true);
+        }
         file_put_contents($outputPath, $result->getString());
 
         return $uniqueFileName; // Kembali ke nama file yang unik

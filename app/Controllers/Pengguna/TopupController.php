@@ -31,12 +31,12 @@ class TopupController extends BaseController
         // session()->set("company_id", $companyId);
         // $companyModel = new CompanyModel();
         // $anggotaModel = new AnggotaModel();
+        $rekeningModel = new RekeningModel();
+        $rekening = $rekeningModel->where("account_id", session('user_id'))->first();
         $data = [
             "activeMenu" => "topup",
+            "rekening" => $rekening,
         ];
-        if(isset($_GET["idSimper"])){
-            $data['idSimepr'] = $_GET['idSimper'];
-        }
         // $data['company'] = $companyModel->find($companyId);
         // $data['anggota'] = $anggotaModel->getAnggotaData($companyId);
         return view('pengguna/topup', $data);

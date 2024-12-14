@@ -167,7 +167,7 @@
             <!--begin::Content-->
             <div class="flex-lg-row-fluid mb-10">
 
-                <div class="card card-custom h-100 bg-white text-center">
+                <div class="card card-custom h-100 bg-white text-center mb-5">
                     <div class="card-header py-3 d-flex justify-content-center">
                         <h3 class="card-title text-primary mb-0">Top Up Saldo</h3>
                     </div>
@@ -176,21 +176,45 @@
                             <i class="fas fa-wallet icon-large text-primary"></i>
                         </div>
                         <p class="card-text text-muted">
-                            Isi saldo Anda dengan mudah menggunakan QR Code. Scan QR Code di bawah ini untuk
-                            melakukan top up.
+                            Isi saldo Anda dengan mudah menggunakan salah satu metode di bawah ini.
                         </p>
-                        <div class="mb-4">
-                            <img src="<?= base_url('uploads/qrcode/1.png'); ?>" alt="QR Code" class="image-preview">
-                        </div>
-                        <form action="<?= base_url('pengguna/topup/post-topup'); ?>" method="post">
-                            <?= csrf_field(); ?>
-                            <div class="mb-4 mx-lg-5 px-lg-5">
-                                <label class="form-label">Jumlah Top Up</label>
-                                <input type="number" name="amount" class="form-control form-control-lg"
-                                    placeholder="Masukkan jumlah top up" required>
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Top Up via QR Code</h5>
+                                        <p class="card-text">Scan QR Code di bawah ini untuk meminta saldo dari orang
+                                            lain.</p>
+                                        <div class="mb-4">
+                                            <img src="<?= base_url('uploads/qrcode/') . $rekening['qr_code']; ?>"
+                                                alt="QR Code" class="image-preview">
+                                        </div>
+                                        <p class="text-muted-custom">Setelah scan, orang lain dapat mengirim saldo ke
+                                            akun Anda.</p>
+                                    </div>
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-custom">Top Up Sekarang</button>
-                        </form>
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Top Up Langsung</h5>
+                                        <p class="card-text">Masukkan jumlah top up dan saldo Anda akan bertambah secara
+                                            otomatis.</p>
+                                        <form action="<?= base_url('pengguna/topup/post-topup'); ?>" method="post">
+                                            <?= csrf_field(); ?>
+                                            <div class="mb-4">
+                                                <label class="form-label">Jumlah Top Up</label>
+                                                <input type="number" name="amount" class="form-control form-control-lg"
+                                                    placeholder="Masukkan jumlah top up" required>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary btn-custom">Top Up
+                                                Sekarang</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
