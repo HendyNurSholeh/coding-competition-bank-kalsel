@@ -241,7 +241,7 @@ License: For each use you must have a valid license purchased only from above li
         <div class="navigation-mob">
             <ul>
                 <li class="list <?= $activeMenu == "profile" ? "active" : ""; ?>">
-                    <a href="<?=base_url()?>/penggunaan/profile">
+                    <a href="<?=base_url()?>/pengguna/profile">
                         <span class="icon">
                             <ion-icon name="person-outline" style="font-size: 1.15em !important;"></ion-icon>
                         </span>
@@ -249,12 +249,12 @@ License: For each use you must have a valid license purchased only from above li
                         <span class="circle"></span>
                     </a>
                 </li>
-                <li class="list <?= $activeMenu == "pengajuan id card" ? "active" : ""; ?>">
-                    <a href="<?=base_url()?>/penggunaan/id_card">
+                <li class="list <?= $activeMenu == "transfer" ? "active" : ""; ?>">
+                    <a href="<?=base_url()?>/pengguna/transfer">
                         <span class="icon">
-                            <ion-icon name="reader-outline"></ion-icon>
+                            <ion-icon name="swap-horizontal-outline"></ion-icon>
                         </span>
-                        <span class="text">Mine Permit</span>
+                        <span class="text">Transfer</span>
                         <span class="circle"></span>
                     </a>
                 </li>
@@ -267,16 +267,16 @@ License: For each use you must have a valid license purchased only from above li
                         <span class="circle"></span>
                     </a>
                 </li>
-                <li class="list <?= $activeMenu == "pengajuan simper" ? "active" : ""; ?>">
-                    <a href="<?=base_url()?>/penggunawan/simper">
+                <li class="list <?= $activeMenu == "topup" ? "active" : ""; ?>">
+                    <a href="<?=base_url()?>/pengguna/topup">
                         <span class="icon">
-                            <ion-icon name="car-outline"></ion-icon>
+                            <ion-icon name="wallet-outline"></ion-icon>
                         </span>
-                        <span class="text">Simper</span>
+                        <span class="text">Top Up</span>
                         <span class="circle"></span>
                     </a>
                 </li>
-                <li class="list <?= $activeMenu == "profile" ? "active" : ""; ?>">
+                <!-- <li class="list <?= $activeMenu == "profile" ? "active" : ""; ?>">
                     <a href="<?=base_url()?>/penggunaan/profile">
                         <span class="icon">
                             <ion-icon name="person-outline" style="font-size: 1.15em !important;"></ion-icon>
@@ -284,7 +284,17 @@ License: For each use you must have a valid license purchased only from above li
                         <span class="text">Profile</span>
                         <span class="circle"></span>
                     </a>
-                </li></script>
+                </li> -->
+                <li class="list">
+                    <a href="<?=base_url()?>/logout">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+
+                        </span>
+                        <span class="text">Logout</span>
+                        <span class="circle"></span>
+                    </a>
+                </li>
 
                 <div class="indicator"></div>
             </ul>
@@ -378,13 +388,29 @@ License: For each use you must have a valid license purchased only from above li
                                                 <span class="menu-arrow d-lg-none"></span>
                                             </span>
                                         </a>
-                                        <!-- <div data-kt-menu-placement="bottom-start"
+                                        <div data-kt-menu-placement="bottom-start"
+                                            class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "transfer" ? "here show " : ""; ?>"">
+                                            <a href=" <?= base_url(); ?>/pengguna/transfer"
+                                            class="menu-link py-3 px-5">
+                                            <span class="menu-title">Transfer</span>
+                                            <span class="menu-arrow d-lg-none"></span>
+                                            </a>
+                                        </div>
+                                        <div data-kt-menu-placement="bottom-start"
+                                            class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "topup" ? "here show " : ""; ?>"">
+                                            <a href=" <?= base_url(); ?>/pengguna/topup" class="menu-link py-3 px-5">
+                                            <span class="menu-title">Top Up</span>
+                                            <span class="menu-arrow d-lg-none"></span>
+                                            </a>
+                                        </div>
+
+                                        <div data-kt-menu-placement="bottom-start"
                                             class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "profile" ? "here show " : ""; ?>"">
-                                            <a href=" /dept_head/profile" class="menu-link py-3 px-5">
+                                            <a href=" <?= base_url(); ?>/pengguna/profile" class="menu-link py-3 px-5">
                                             <span class="menu-title">Profile</span>
                                             <span class="menu-arrow d-lg-none"></span>
                                             </a>
-                                        </div> -->
+                                        </div>
                                         <div data-kt-menu-placement="bottom-start"
                                             class="menu-item menu-lg-down-accordion me-lg-1">
                                             <a href="<?= base_url(); ?>/logout" class="menu-link py-3">
@@ -466,7 +492,7 @@ License: For each use you must have a valid license purchased only from above li
                                             <!--end::Menu separator-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-5">
-                                                <a href="<?= base_url(); ?>/dept_head/profile"
+                                                <a href="<?= base_url(); ?>/pengguna/profile"
                                                     class="menu-link px-5">Profile
                                                     Saya</a>
                                             </div>

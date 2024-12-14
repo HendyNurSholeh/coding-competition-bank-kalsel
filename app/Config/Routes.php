@@ -152,6 +152,26 @@ $routes->group('pengguna', function($routes) {
         $routes->post('post-post-test/(:num)/(:num)', 'Pengguna\SimperController::postPostTest/$1/$2');
         $routes->post('post-create-biodata', 'Pengguna\SimperController::postCreateBiodata');
     });
+    $routes->group('topup', function($routes) {
+        $routes->get('/', 'Pengguna\TopupController::index');
+        $routes->get('pernyataan-disiplin/(:num)', 'Pengguna\TopupController::pernyataanDisiplin/$1');
+        $routes->post('post-pernyataan-disiplin/(:num)', 'Pengguna\TopupController::postPernyataanDisiplin/$1');
+        $routes->get('post-test/(:num)/(:num)', 'Pengguna\TopupController::postTest/$1/$2');
+        $routes->post('post-post-test/(:num)/(:num)', 'Pengguna\TopupController::postPostTest/$1/$2');
+        $routes->post('post-create-biodata', 'Pengguna\TopupController::postCreateBiodata');
+    });
+    $routes->group('transfer', function($routes) {
+        $routes->get('/', 'Pengguna\TransferController::index');
+        $routes->get('pernyataan-disiplin/(:num)', 'Pengguna\TransferController::pernyataanDisiplin/$1');
+        $routes->post('post-pernyataan-disiplin/(:num)', 'Pengguna\TransferController::postPernyataanDisiplin/$1');
+        $routes->get('post-test/(:num)/(:num)', 'Pengguna\TransferController::postTest/$1/$2');
+        $routes->post('post-post-test/(:num)/(:num)', 'Pengguna\TransferController::postPostTest/$1/$2');
+        $routes->post('post-create-biodata', 'Pengguna\TransferController::postCreateBiodata');
+    });
+    $routes->group('profile', function($routes) {
+        $routes->get('/', 'pengguna\ProfileController::index');
+        $routes->post('reset-password', 'pengguna\ProfileController::resetPassword');
+    });
 });
 
 $routes->group('scan', function($routes) {
@@ -161,6 +181,8 @@ $routes->group('scan', function($routes) {
 $routes->group('auth', function($routes) {
     $routes->get('login', 'Auth\AuthController::index');
     $routes->post('login/post-login', 'Auth\AuthController::postLogin');
+    $routes->get('register', 'Auth\AuthController::register');
+    $routes->post('register/post-register', 'Auth\AuthController::postRegister');
 });
 
 $routes->get('logout', 'Auth\AuthController::logout');

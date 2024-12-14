@@ -20,27 +20,18 @@
 </style>
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
-<div id="kt_content_container"
-    class="content-mobile d-flex flex-column-fluid align-items-start container-xxl d-lg-none">
+<div id="kt_content_container" class="d-flex flex-column-fluid align-items-start container-xxl">
     <!--begin::Post-->
     <div class="content flex-row-fluid" id="kt_content">
-        <!--begin::Layout - Overview-->
-        <div class="d-flex flex-column flex-xl-row   bg-white card-rounded">
-            <!--begin::Sidebar-->
-            <div class="flex-column flex-lg-row-auto w-100 w-xl-325px mb-10 ">
-                <!--begin::Card-->
-                <div class="card card-flush  pb-0" data-kt-sticky="true" data-kt-sticky-name="account-navbar"
-                    data-kt-sticky-offset="{default: false, xl: '80px'}"
-                    data-kt-sticky-width="{lg: '250px', xl: '325px'}" data-kt-sticky-left="auto"
-                    data-kt-sticky-top="90px" data-kt-sticky-animation="false" data-kt-sticky-zindex="95">
-                    <!--begin::Card header-->
-                    <!--end::Card header-->
-                    <!--end::Card header-->
-                    <!--begin::Card body-->
-                    <div class="card-body p-10 pb-0">
-                        <!--begin::Summary-->
-                        <div class="d-flex flex-center flex-column py-10"
-                            style="background: linear-gradient(45deg, #FFD700, #FF8C00)">
+        <!--begin::Index-->
+        <div class="card card-page shadow-sm mb-5 bg-white rounded">
+            <!--begin::Card body-->
+            <div class="card-body">
+                <!--begin::Row-->
+                <div class="row gy-5 g-xl-8 px-4 py-3">
+                    <div class="col-lg-4">
+                        <div class="d-flex flex-center flex-column py-10 "
+                            style="background: linear-gradient(45deg, #FFD700, #FF8C00); border-radius: 10px;">
                             <!--begin::Avatar-->
                             <div class="symbol symbol-100px symbol-circle mb-7">
                                 <img src="<?= base_url('assets/media/avatars/150-1.jpg') ?>" alt="image" />
@@ -64,11 +55,9 @@
                             </div>
                             <!--end::Actions-->
                         </div>
-                        <!--end::Summary-->
                     </div>
-                    <div class="card-body p-10 pt-0">
-                        <!--begin::Summary-->
-                        <div class="d-flex flex-column py-10 bg-white border rounded">
+                    <div class="col-lg-8">
+                        <div class="d-flex flex-column py-10 bg-white rounded">
                             <!--begin::Title-->
                             <div class="d-flex justify-content-between align-items-center mb-4">
                                 <div class="fs-4 text-dark">Transaksi Terakhir</div>
@@ -110,18 +99,16 @@
                             </div>
                             <!--end::Transaction List-->
                         </div>
-                        <!--end::Summary-->
                     </div>
                 </div>
             </div>
-            <!--end::Summary-->
-
-            <!--end::Card-->
+            <!--end::Card body-->
         </div>
+        <!--end::Index-->
     </div>
-    <!--end::Sidebar-->
-    <!--end::Content-->
+    <!--end::Post-->
 </div>
+
 
 
 <?= $this->endSection() ?>

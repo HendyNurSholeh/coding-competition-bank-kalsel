@@ -125,83 +125,66 @@ License: For each use you must have a valid license purchased only from above li
                 <!--begin::Wrapper-->
                 <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
 
-                    <!--begin::Form-->
-                    <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form"
-                        action="<?= base_url()?>/auth/login/post-login" method="post">
+                    <form class="form w-100" id="kt_sign_up_form" action="<?= base_url()?>/auth/register/post-register"
+                        method="post">
                         <?= csrf_field(); ?>
 
                         <div class="text-center mb-10">
-                            <!--begin::Title-->
-                            <h1 class="text-dark mb-3">Login</h1>
-                            <!--end::Title-->
-
-                            <!--begin::Link-->
+                            <h1 class="text-dark mb-3">Register</h1>
                             <div class="text-gray-400 fw-semibold fs-4">
                                 <a href="#" class="link-info fw-bold">
-                                    masuk untuk melanjutkan
+                                    Daftar untuk membuat akun baru
                                 </a>
                             </div>
-                            <!--end::Linkroutes-->
                         </div>
 
-                        <!--begin::Heading-->
-                        <!--begin::Input group-->
                         <div class="fv-row mb-10">
-                            <!--begin::Label-->
-                            <label class="form-label required fs-6 fw-bold text-gray-900">Username</label>
-                            <!--end::Label-->
+                            <label class="form-label required fs-6 fw-bold text-gray-900">Nama Lengkap</label>
+                            <input class="form-control form-control-lg form-control-solid"
+                                placeholder="masukkan nama lengkap" type="text" name="full_name" autocomplete="off"
+                                required />
+                        </div>
 
-                            <!--begin::Input-->
+                        <div class="fv-row mb-10">
+                            <label class="form-label required fs-6 fw-bold text-gray-900">Username</label>
                             <input class="form-control form-control-lg form-control-solid"
                                 placeholder="masukkan username" type="text" name="username" autocomplete="off"
                                 required />
-                            <!--end::Input-->
                         </div>
-                        <!--end::Input group-->
 
-                        <!--begin::Input group-->
                         <div class="fv-row mb-10">
-                            <!--begin::Wrapper-->
-                            <div class="d-flex flex-stack mb-2">
-                                <!--begin::Label-->
-                                <label class="form-label required fw-bold text-gray-900 fs-6 mb-0">Password</label>
-                                <!--end::Label-->
+                            <label class="form-label required fs-6 fw-bold text-gray-900">Email</label>
+                            <input class="form-control form-control-lg form-control-solid" placeholder="masukkan email"
+                                type="email" name="email" autocomplete="off" required />
+                        </div>
 
-                                <!--begin::Link-->
-                                <!--end::Link-->
-                            </div>
-                            <!--end::Wrapper-->
-
-                            <!--begin::Input-->
+                        <div class="fv-row mb-10">
+                            <label class="form-label required fs-6 fw-bold text-gray-900">Password</label>
                             <input class="form-control form-control-lg form-control-solid"
                                 placeholder="masukkan password" type="password" name="password" autocomplete="off"
                                 required />
-                            <!--end::Input-->
-
                         </div>
-                        <p>Belum punya akun? <a href="/auth/register">daftar sekarang</a></p>
-                        <!--end::Input group-->
 
-                        <!--begin::Actions-->
+                        <div class="fv-row mb-10">
+                            <label class="form-label required fs-6 fw-bold text-gray-900">Konfirmasi Password</label>
+                            <input class="form-control form-control-lg form-control-solid"
+                                placeholder="konfirmasi password" type="password" name="confirm_password"
+                                autocomplete="off" required />
+                        </div>
+
                         <div class="text-center">
-                            <!--begin::Submit button-->
-                            <!-- <button type="submit" id="kt_sign_in_submit" class="btn btn-lg btn-primary w-100 mb-5"> -->
                             <button type="submit" class="btn btn-lg btn-info w-100 mb-5">
                                 <span class="indicator-label fw-bold text-white">
-                                    Login
+                                    Register
                                 </span>
-
-
                                 <span class="indicator-progress">
                                     Please wait... <span
                                         class="spinner-border spinner-border-sm align-middle ms-2"></span>
                                 </span>
                             </button>
-                            <!--end::Submit button-->
-
-                            <!--end::Google link-->
                         </div>
-                        <!--end::Actions-->
+
+                        <p>Sudah punya akun? <a href="/auth/login">masuk sekarang</a></p>
                     </form>
                     <!--end::Form-->
                 </div>

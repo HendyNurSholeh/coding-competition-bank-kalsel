@@ -62,7 +62,7 @@ jobs:
         uses: burnett01/rsync-deployments@4.1
         with:
           # Menyinkronkan semua file kecuali .git, .github, dan folder public
-          switches: -avzr --delete --exclude=".git" --exclude=".github" --exclude="public/"
+          switches: -avzr --delete --exclude=".git" --exclude=".github" --exclude="public/" --exclude=".env"
           path: .
           remote_path: /home/batuahcoba/domains/ujicoba.batuah.tech/hackathon
           remote_host: ujicoba.batuah.tech
