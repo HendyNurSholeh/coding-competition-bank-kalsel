@@ -141,7 +141,7 @@
                                                             <div class="modal-body px-5 my-7">
                                                                 <!--begin::Form-->
                                                                 <form id="kt_modal_edit_broker_form" class="form"
-                                                                    action="/admin/event/post-edit" method="post">
+                                                                    action="/operator/event/post-edit" method="post">
                                                                     <!--begin::Scroll-->
                                                                     <div class="d-flex flex-column scroll-y px-5 px-lg-10"
                                                                         id="kt_modal_edit_broker_scroll"
@@ -305,7 +305,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <form action="/admin/event/post-delete" method="post">
+                    <form action="/operator/event/post-delete" method="post">
                         <input type="hidden" name="id" id="id">
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-danger">Hapus</button>
@@ -336,7 +336,7 @@
                 <!--begin::Modal body-->
                 <div class="modal-body px-5 my-7">
                     <!--begin::Form-->
-                    <form id="kt_modal_add_broker_form" class="form" action="/admin/event/post-add" method="post">
+                    <form id="kt_modal_add_broker_form" class="form" action="/operator/event/post-add" method="post">
                         <!--begin::Scroll-->
                         <div class="d-flex flex-column scroll-y px-5 px-lg-10" id="kt_modal_add_broker_scroll"
                             data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_broker_header"
