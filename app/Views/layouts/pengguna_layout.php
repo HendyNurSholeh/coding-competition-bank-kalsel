@@ -289,7 +289,7 @@ License: For each use you must have a valid license purchased only from above li
                     </a>
                 </li> -->
                 <li class="list">
-                    <a href="<?=base_url()?>/login">
+                    <a href="<?=base_url()?>/auth/login">
                         <span class="icon">
                             <ion-icon name="log-in-outline"></ion-icon>
 
