@@ -90,7 +90,7 @@
                                                         <button type="button"
                                                             class="btn py-1 btn-light-info btn-sm me-2"
                                                             data-id="<?= $account['id'] ?>" data-bs-toggle="modal"
-                                                            data-bs-target="#kt_modal_edit_user">
+                                                            data-bs-target="#kt_modal_edit_user<?=$account['id']?>">
                                                             <i class="bi bi-pen fs-6 fw-bold"></i>
                                                         </button>
                                                         <button type="button" class="btn py-1 btn-light-info btn-sm"
@@ -98,6 +98,137 @@
                                                             data-id="<?= $account['id']; ?>">
                                                             <i class="bi bi-trash fs-6 fw-bold"></i>
                                                         </button>
+
+                                                        <!--begin::Modal - Edit task-->
+                                                        <div class="modal fade"
+                                                            id="kt_modal_edit_user<?=$account['id']?>" tabindex="-1"
+                                                            aria-hidden="true">
+                                                            <!--begin::Modal dialog-->
+                                                            <div class="modal-dialog modal-lg">
+                                                                <!--begin::Modal content-->
+                                                                <div class="modal-content">
+                                                                    <!--begin::Modal header-->
+                                                                    <div class="modal-header"
+                                                                        id="kt_modal_add_user_header">
+                                                                        <!--begin::Modal title-->
+                                                                        <h2 class="fw-bold">Edit Akun</h2>
+                                                                        <!--end::Modal title-->
+
+                                                                        <!--begin::Close-->
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                        <!--end::Close-->
+                                                                    </div>
+                                                                    <!--end::Modal header-->
+
+                                                                    <!--begin::Modal body-->
+                                                                    <div class="modal-body px-5 my-7">
+                                                                        <!--begin::Form-->
+                                                                        <form id="kt_modal_edit_broker_form"
+                                                                            class="form" action="/admin/akun/post-edit"
+                                                                            method="post">
+                                                                            <input type="hidden" name="id"
+                                                                                value="<?= $account['id'] ?>" />
+                                                                            <div class="row">
+                                                                                <div class="col-12">
+                                                                                    <div class="fv-row mb-7">
+                                                                                        <label
+                                                                                            class="required fw-semibold fs-6 mb-2">Nama/Username</label>
+                                                                                        <input type="text"
+                                                                                            name="username"
+                                                                                            class="form-control form-control-solid mb-3 mb-lg-0"
+                                                                                            value="<?= $account['username'] ?>"
+                                                                                            required />
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-6">
+                                                                                    <div class="fv-row mb-7">
+                                                                                        <label
+                                                                                            class="fw-semibold fs-6 mb-2">Password</label>
+                                                                                        <input type="password"
+                                                                                            name="password"
+                                                                                            class="form-control form-control-solid mb-3 mb-lg-0"
+                                                                                            placeholder="Masukkan password" />
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-6">
+                                                                                    <div class="fv-row mb-7">
+                                                                                        <label
+                                                                                            class="fw-semibold fs-6 mb-2">Konfirmasi
+                                                                                            Password</label>
+                                                                                        <input type="password"
+                                                                                            name="confirm_password"
+                                                                                            class="form-control form-control-solid mb-3 mb-lg-0"
+                                                                                            placeholder="Masukkan konfirmasi password" />
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-6">
+                                                                                    <div class="fv-row mb-7">
+                                                                                        <label
+                                                                                            class="required fw-semibold fs-6 mb-2">Email</label>
+                                                                                        <input type="email" name="email"
+                                                                                            class="form-control form-control-solid mb-3 mb-lg-0"
+                                                                                            value="<?= $account['email'] ?>"
+                                                                                            required />
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-6">
+                                                                                    <div class="fv-row mb-7">
+                                                                                        <label
+                                                                                            class="required fw-semibold fs-6 mb-2">Level</label>
+                                                                                        <select name="level"
+                                                                                            class="form-select form-select-solid"
+                                                                                            required>
+                                                                                            <option value="">- Pilih
+                                                                                                Level -</option>
+                                                                                            <option value="admin"
+                                                                                                <?= $account['level'] == 'admin' ? 'selected' : '' ?>>
+                                                                                                Admin</option>
+                                                                                            <option value="operator"
+                                                                                                <?= $account['level'] == 'operator' ? 'selected' : '' ?>>
+                                                                                                Operator</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="text-center pt-10">
+                                                                                <button type="reset"
+                                                                                    class="btn btn-light me-3"
+                                                                                    data-bs-dismiss="modal">
+                                                                                    Batal
+                                                                                </button>
+
+                                                                                <input type="hidden" name='id'
+                                                                                    value="<?= $account['id'] ?>">
+                                                                                <button type="submit"
+                                                                                    class="btn btn-primary"
+                                                                                    data-kt-users-modal-action="submit">
+                                                                                    <span class="indicator-label">
+                                                                                        Submit
+                                                                                    </span>
+                                                                                    <span class="indicator-progress">
+                                                                                        Please wait... <span
+                                                                                            class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                                                                    </span>
+                                                                                </button>
+                                                                            </div>
+                                                                        </form>
+
+                                                                        <!--end::Form-->
+                                                                    </div>
+                                                                    <!--end::Modal body-->
+                                                                </div>
+                                                                <!--end::Modal content-->
+                                                            </div>
+                                                            <!--end::Modal dialog-->
+                                                        </div>
+                                                        <!--end::Modal - Add task-->
+
                                                     </td>
                                                 </tr>
                                                 <?php endforeach; ?>
@@ -263,127 +394,6 @@
     <!--end::Modal - Add task-->
 
 
-    <!--begin::Modal - Edit task-->
-    <div class="modal fade" id="kt_modal_edit_user" tabindex="-1" aria-hidden="true">
-        <!--begin::Modal dialog-->
-        <div class="modal-dialog modal-lg">
-            <!--begin::Modal content-->
-            <div class="modal-content">
-                <!--begin::Modal header-->
-                <div class="modal-header" id="kt_modal_add_user_header">
-                    <!--begin::Modal title-->
-                    <h2 class="fw-bold">Edit Akun</h2>
-                    <!--end::Modal title-->
-
-                    <!--begin::Close-->
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <!--end::Close-->
-                </div>
-                <!--end::Modal header-->
-
-                <!--begin::Modal body-->
-                <div class="modal-body px-5 my-7">
-                    <!--begin::Form-->
-                    <form id="kt_modal_edit_broker_form" class="form" action="/admin/akun/post-edit" method="post">
-                        <!--begin::Scroll-->
-                        <div class="d-flex flex-column scroll-y px-5 px-lg-10" id="kt_modal_add_broker_scroll"
-                            data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_edit_broker_header"
-                            data-kt-scroll-wrappers="#kt_modal_add_broker_scroll" data-kt-scroll-offset="300px">
-
-                            <!-- Broker Name -->
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="fv-row mb-7">
-                                        <label class="required fw-semibold fs-6 mb-2">Nama Perusahaan</label>
-                                        <input type="text" name="akun_name"
-                                            class="form-control form-control-solid mb-3 mb-lg-0"
-                                            placeholder="Masukkan nama perusahaan" required />
-                                    </div>
-                                </div>
-                                <!-- <div class="col-6">
-                                    <div class="fv-row mb-7">
-                                        <label class="required fw-semibold fs-6 mb-2">Username</label>
-                                        <input type="text" name="username"
-                                            class="form-control form-control-solid mb-3 mb-lg-0"
-                                            placeholder="Masukkan username" required />
-                                    </div>
-                                </div> -->
-                            </div>
-                            <!-- <div class="row">
-                                <div class="col-6">
-                                    <div class="fv-row mb-7">
-                                        <label class="required fw-semibold fs-6 mb-2">Password</label>
-                                        <input type="password" name="password"
-                                            class="form-control form-control-solid mb-3 mb-lg-0"
-                                            placeholder="Masukkan password" required />
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="fv-row mb-7">
-                                        <label class="required fw-semibold fs-6 mb-2">Konfirmasi Password</label>
-                                        <input type="password" name="confirm_password"
-                                            class="form-control form-control-solid mb-3 mb-lg-0"
-                                            placeholder="Masukkan konfirmasi password" required />
-                                    </div>
-                                </div>
-                            </div> -->
-
-                            <!-- Province -->
-
-
-                            <!-- Kecamatan -->
-
-
-                            <!-- PIC -->
-                            <div class="fv-row mb-7">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <label class="fw-semibold fs-6 mb-2">PIC</label>
-                                        <input type="text" name="pic"
-                                            class="form-control form-control-solid mb-3 mb-lg-0"
-                                            placeholder="Masukkan nama PIC" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="fv-row mb-7">
-                                <label class="fw-semibold fs-6 mb-2">No. Telp PIC</label>
-                                <input type="text" name="no_telp_pic"
-                                    class="form-control form-control-solid mb-3 mb-lg-0"
-                                    placeholder="Masukkan nomor telepon PIC" />
-                            </div>
-
-                        </div>
-                        <!--end::Scroll-->
-
-                        <!--begin::Actions-->
-                        <div class="text-center pt-10">
-                            <button type="reset" class="btn btn-light me-3" data-bs-dismiss="modal">
-                                Batal
-                            </button>
-                            <input type="hidden" name="id" id="id">
-
-                            <button type="submit" class="btn btn-primary" data-kt-users-modal-action="submit">
-                                <span class="indicator-label">
-                                    Submit
-                                </span>
-                                <span class="indicator-progress">
-                                    Please wait... <span
-                                        class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                </span>
-                            </button>
-                        </div>
-                        <!--end::Actions-->
-                    </form>
-
-                    <!--end::Form-->
-                </div>
-                <!--end::Modal body-->
-            </div>
-            <!--end::Modal content-->
-        </div>
-        <!--end::Modal dialog-->
-    </div>
-    <!--end::Modal - Add task-->
 
 </div>
 <?= $this->endSection() ?>
