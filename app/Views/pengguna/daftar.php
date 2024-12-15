@@ -175,7 +175,7 @@
                     <div class="card card-custom h-100 bg-light-primary text-center">
                         <div class="card-body p-5 mb-5">
                             <div class="mb-4" style="padding-top: 8px">
-                                <i class="fas fa-car icon-large text-primary"></i>
+                                <i class="fas fa-calendar-alt icon-large text-primary"></i>
                             </div>
                             <h4 class="card-title text-primary mb-3" style="padding-top: 8px">Pendaftaran Event</h4>
                             <p class="card-text text-muted">
@@ -401,9 +401,6 @@
                                         <!-- <button type="submit" class="btn btn-primary">
                                             Berikutnya
                                         </button> -->
-                                        <button class="btn btn-primary">
-                                            Berikutnya
-                                        </button>
                                     </div>
                                     <!--end::Wrapper-->
                                 </div>

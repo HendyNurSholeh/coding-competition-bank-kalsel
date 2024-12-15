@@ -15,7 +15,7 @@ License: For each use you must have a valid license purchased only from above li
 
 <head>
     <base href="">
-    <title>United Tractors</title>
+    <title>Event App Bank Kalsel</title>
     <meta name="description"
         content="Ceres admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." />
     <meta name="keywords"
@@ -241,7 +241,7 @@ License: For each use you must have a valid license purchased only from above li
         <div class="navigation-mob">
             <ul>
                 <li class="list  <?= $activeMenu == "profile" ? "active" : ""; ?>">
-                    <a href="<?=base_url()?>/dept_head/profile">
+                    <a href="<?=base_url()?>/admin/profile">
                         <span class="icon">
                             <ion-icon name="person-outline" style="font-size: 1.15em !important;"></ion-icon>
                         </span>
@@ -250,7 +250,7 @@ License: For each use you must have a valid license purchased only from above li
                     </a>
                 </li>
                 <li class="list <?= $activeMenu == "pengajuan id card" ? "active" : ""; ?>">
-                    <a href="<?=base_url()?>/dept_head/id_card">
+                    <a href="<?=base_url()?>/admin/id_card">
                         <span class="icon">
                             <ion-icon name="reader-outline"></ion-icon>
                         </span>
@@ -259,7 +259,7 @@ License: For each use you must have a valid license purchased only from above li
                     </a>
                 </li>
                 <li class="list <?= $activeMenu == "dashboard" ? "active" : ""; ?>">
-                    <a href="<?=base_url()?>/dept_head/dashboard" class="">
+                    <a href="<?=base_url()?>/admin/dashboard" class="">
                         <span class="icon" style="box-sizing: border-box !important;">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
@@ -268,7 +268,7 @@ License: For each use you must have a valid license purchased only from above li
                     </a>
                 </li>
                 <li class="list <?= $activeMenu == "pengajuan simper" ? "active" : ""; ?>">
-                    <a href="<?=base_url()?>/dept_head/simper">
+                    <a href="<?=base_url()?>/admin/simper">
                         <span class="icon">
                             <ion-icon name="car-outline"></ion-icon>
                         </span>
@@ -312,7 +312,80 @@ License: For each use you must have a valid license purchased only from above li
 <body id="kt_body" style="background-image: url(<?=base_url()?>/assets/media/patterns/header-bg.png)"
     class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled">
 
+    <!--begin::Body-->
+    <div class="nav-container">
+        <div class="nav-mob">
 
+            <div class="navigation-mob">
+                <ul>
+                    <li class="list  <?= $activeMenu == "profile" ? "active" : ""; ?>">
+                        <a href="<?=base_url()?>/dept_head/profile">
+                            <span class="icon">
+                                <ion-icon name="person-outline" style="font-size: 1.15em !important;"></ion-icon>
+                            </span>
+                            <span class="text">Profile</span>
+                            <span class="circle"></span>
+                        </a>
+                    </li>
+                    <li class="list <?= $activeMenu == "pengajuan id card" ? "active" : ""; ?>">
+                        <a href="<?=base_url()?>/dept_head/id_card">
+                            <span class="icon">
+                                <ion-icon name="reader-outline"></ion-icon>
+                            </span>
+                            <span class="text">Mine Permit</span>
+                            <span class="circle"></span>
+                        </a>
+                    </li>
+                    <li class="list <?= $activeMenu == "dashboard" ? "active" : ""; ?>">
+                        <a href="<?=base_url()?>/dept_head/dashboard" class="">
+                            <span class="icon" style="box-sizing: border-box !important;">
+                                <ion-icon name="home-outline"></ion-icon>
+                            </span>
+                            <span class="text">Home</span>
+                            <span class="circle"></span>
+                        </a>
+                    </li>
+                    <li class="list <?= $activeMenu == "pengajuan simper" ? "active" : ""; ?>">
+                        <a href="<?=base_url()?>/dept_head/simper">
+                            <span class="icon">
+                                <ion-icon name="car-outline"></ion-icon>
+                            </span>
+                            <span class="text">Simper</span>
+                            <span class="circle"></span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a href="<?=base_url()?>/logout">
+                            <span class="icon">
+                                <ion-icon name="log-out-outline"></ion-icon>
+
+                            </span>
+                            <span class="text">Logout</span>
+                            <span class="circle"></span>
+                        </a>
+                    </li>
+
+                    <div class="indicator"></div>
+                </ul>
+            </div>
+
+            <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+            <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+            <script>
+            const list = document.querySelectorAll('.list');
+
+            function activeLink() {
+                list.forEach((item) =>
+                    item.classList.remove('active'));
+                this.classList.add('active');
+            }
+
+            list.forEach((item) =>
+                item.addEventListener('click', activeLink));
+            </script>
+        </div>
+
+    </div>
 
 
     <!--begin::Main-->
@@ -347,7 +420,7 @@ License: For each use you must have a valid license purchased only from above li
                         <!--end::Heaeder menu toggle-->
                         <!--begin::Header Logo-->
                         <div class="header-logo me-5 me-md-10 flex-grow-1 flex-lg-grow-0">
-                            <a href="<?=base_url()?>/dept_head/dashboard">
+                            <a href="<?=base_url()?>/admin/dashboard">
                                 <img alt="Logo" src="<?=base_url()?>/image/logo.png" style="border-radius: 8px;"
                                     class="h-25px h-lg-35px logo-default" />
                                 <img alt="Logo" src="<?=base_url()?>/image/logo.png"
@@ -371,7 +444,7 @@ License: For each use you must have a valid license purchased only from above li
                                     <!--begin::Menu-->
                                     <div class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-bold my-5 my-lg-0 align-items-stretch"
                                         id="#kt_header_menu" data-kt-menu="true">
-                                        <!-- <a href="<?=base_url()?>/dept_head/dashboard" data-kt-menu-placement="bottom-start"
+                                        <!-- <a href="<?=base_url()?>/admin/dashboard" data-kt-menu-placement="bottom-start"
                                             class="menu-item menu-lg-down-accordion me-lg-1 <?php $activeMenu == "dashboard" ? "here show " : ""; ?>">
                                             <span class="menu-link py-3">
                                                 <span class="menu-title">Dashboard</span>
@@ -392,7 +465,7 @@ License: For each use you must have a valid license purchased only from above li
                                            
                                                 <div class="menu-item">
                                                     <a class="menu-link py-3 <?php $activeMenu == "pengajuan id card" ? "active " : ""; ?>"
-                                                        href="<?=base_url()?>/dept_head/id_card">
+                                                        href="<?=base_url()?>/admin/id_card">
                                                         <span class="menu-icon">
                                                             <i class="bi bi-person-badge-fill"></i>
                                                         </span>
@@ -401,7 +474,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 </div>
                                                 <div class="menu-item">
                                                     <a class="menu-link py-3 <?php $activeMenu == "pengajuan simper" ? "active " : ""; ?>"
-                                                        href="<?=base_url()?>/dept_head/simper">
+                                                        href="<?=base_url()?>/admin/simper">
                                                         <span class="menu-icon">
                                                             <i class="bi bi-credit-card"></i>
                                                         </span>
@@ -411,22 +484,29 @@ License: For each use you must have a valid license purchased only from above li
                                             </div>
                                         </div> -->
                                         <div data-kt-menu-placement="bottom-start"
-                                            class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "pengajuan id card" ? "here show " : ""; ?>"">
-                                            <a href=" <?=base_url()?>/dept_head/id_card" class="menu-link py-3 px-5">
-                                            <span class="menu-title">Mine Permit</span>
+                                            class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "akun" ? "here show " : ""; ?>"">
+                                            <a href=" <?=base_url()?>/admin/akun" class="menu-link py-3 px-5">
+                                            <span class="menu-title">Management Akun</span>
                                             <span class="menu-arrow d-lg-none"></span>
                                             </a>
                                         </div>
                                         <div data-kt-menu-placement="bottom-start"
-                                            class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "pengajuan simper" ? "here show " : ""; ?>"">
-                                            <a href=" <?=base_url()?>/dept_head/simper" class="menu-link py-3 px-5">
-                                            <span class="menu-title">Simper</span>
+                                            class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "event" ? "here show " : ""; ?>"">
+                                            <a href=" <?=base_url()?>/admin/event" class="menu-link py-3 px-5">
+                                            <span class="menu-title">Kelola Event</span>
+                                            <span class="menu-arrow d-lg-none"></span>
+                                            </a>
+                                        </div>
+                                        <div data-kt-menu-placement="bottom-start"
+                                            class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "pendaftaran" ? "here show " : ""; ?>"">
+                                            <a href=" <?=base_url()?>/admin/pendaftaran" class="menu-link py-3 px-5">
+                                            <span class="menu-title">Management Peserta</span>
                                             <span class="menu-arrow d-lg-none"></span>
                                             </a>
                                         </div>
                                         <div data-kt-menu-placement="bottom-start"
                                             class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "profile" ? "here show " : ""; ?>"">
-                                            <a href=" <?=base_url()?>/dept_head/profile" class="menu-link py-3 px-5">
+                                            <a href=" <?=base_url()?>/admin/profile" class="menu-link py-3 px-5">
                                             <span class="menu-title">Profile</span>
                                             <span class="menu-arrow d-lg-none"></span>
                                             </a>
@@ -511,8 +591,7 @@ License: For each use you must have a valid license purchased only from above li
                                             <!--end::Menu separator-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-5">
-                                                <a href="<?=base_url()?>/dept_head/profile"
-                                                    class="menu-link px-5">Profile
+                                                <a href="<?=base_url()?>/admin/profile" class="menu-link px-5">Profile
                                                     Saya</a>
                                             </div>
                                             <!--end::Menu item-->
@@ -535,42 +614,42 @@ License: For each use you must have a valid license purchased only from above li
                                     </div>
                                     <!--end::User -->
                                 </div>
-                                <!--end::Toolbar wrapper-->
                             </div>
-                            <!--end::Topbar-->
+                            <!--end::Toolbar wrapper-->
                         </div>
+                        <!--end::Topbar-->
+                    </div>
 
-                        <!--end::Wrapper-->
-                    </div>
-                    <!--end::Container-->
+                    <!--end::Wrapper-->
                 </div>
-                <!--end::Header-->
-                <!--begin::Toolbar-->
-                <!--end::Toolbar-->
-                <!--begin::Container-->
-                <?= $this->renderSection('content') ?>
                 <!--end::Container-->
-                <!--begin::Footer-->
-                <div class="footer py-4 d-flex flex-lg-column" id="kt_footer">
-                    <!--begin::Container-->
-                    <div
-                        class="container-xxl d-flex flex-column flex-md-row align-items-center justify-content-between">
-                        <!--begin::Copyright-->
-                        <div class="text-dark order-2 order-md-1">
-                            <span class="text-muted fw-bold me-1">2024©</span>
-                            <a href="https://keenthemes.com" target="_blank" class="text-gray-800 text-hover-primary">PT
-                                United Tractors</a>
-                        </div>
-                        <!--end::Copyright-->
-                        <!--end::Menu-->
-                    </div>
-                    <!--end::Container-->
-                </div>
-                <!--end::Footer-->
             </div>
-            <!--end::Wrapper-->
+            <!--end::Header-->
+            <!--begin::Toolbar-->
+            <!--end::Toolbar-->
+            <!--begin::Container-->
+            <?= $this->renderSection('content') ?>
+            <!--end::Container-->
+            <!--begin::Footer-->
+            <div class="footer py-4 d-flex flex-lg-column" id="kt_footer">
+                <!--begin::Container-->
+                <div class="container-xxl d-flex flex-column flex-md-row align-items-center justify-content-between">
+                    <!--begin::Copyright-->
+                    <div class="text-dark order-2 order-md-1">
+                        <span class="text-muted fw-bold me-1">2024©</span>
+                        <a href="https://keenthemes.com" target="_blank" class="text-gray-800 text-hover-primary">PT
+                            Event App Bank Kalsel</a>
+                    </div>
+                    <!--end::Copyright-->
+                    <!--end::Menu-->
+                </div>
+                <!--end::Container-->
+            </div>
+            <!--end::Footer-->
         </div>
-        <!--end::Page-->
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
     </div>
     <!--begin::Scrolltop-->
     <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
