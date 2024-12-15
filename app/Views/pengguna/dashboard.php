@@ -64,9 +64,10 @@
                             <!--begin::Event List-->
                             <div id="eventList">
                                 <?php foreach ($events as $event): ?>
-                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div
+                                    class="d-flex justify-content-between align-items-center mb-3 p-3 border-bottom border-2">
                                     <div class="d-flex flex-column">
-                                        <div class="text-dark"><?= $event['title'] ?></div>
+                                        <div class="text-dark fw-bold"><?= $event['title'] ?></div>
                                         <div class="text-muted">Tanggal:
                                             <?= date('d M Y', strtotime($event['event_date'])) ?>
                                         </div>
