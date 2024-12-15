@@ -242,14 +242,14 @@ License: For each use you must have a valid license purchased only from above li
             <ul>
 
 
-                <li class="list <?= $activeMenu == "transfer" ? "active" : ""; ?>">
-                    <!-- <a href="<?=base_url()?>/pengguna/transfer">
+                <li class="list <?= $activeMenu == "pendaftaran" ? "active" : ""; ?>">
+                    <a href="<?=base_url()?>/pengguna/pendaftaran">
                         <span class="icon">
-                            <ion-icon name="swap-horizontal-outline"></ion-icon>
+                            <ion-icon name="calendar-outline"></ion-icon>
                         </span>
-                        <span class="text">Transfer</span>
+                        <span class="text">Pendaftaran</span>
                         <span class="circle"></span>
-                    </a> -->
+                    </a>
                 </li>
                 <li class="list <?= $activeMenu == "profile" ? "active" : ""; ?>">
                     <!-- <a href="<?=base_url()?>/pengguna/profile">
@@ -399,6 +399,14 @@ License: For each use you must have a valid license purchased only from above li
                                             class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "dashboard" ? "here show " : ""; ?>">
                                             <span class="menu-link py-3">
                                                 <span class="menu-title">Dashboard</span>
+                                                <span class="menu-arrow d-lg-none"></span>
+                                            </span>
+                                        </a>
+                                        <a href="<?= base_url(); ?>/pengguna/pendaftaran"
+                                            data-kt-menu-placement="bottom-start"
+                                            class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "pendaftaran" ? "here show " : ""; ?>">
+                                            <span class="menu-link py-3">
+                                                <span class="menu-title">Peserta</span>
                                                 <span class="menu-arrow d-lg-none"></span>
                                             </span>
                                         </a>

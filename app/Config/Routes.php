@@ -189,6 +189,7 @@ $routes->get('test', 'DeptHead\PengajuanSimperController::test');
 $routes->group('pengguna', function($routes) {
     $routes->get('dashboard', 'Pengguna\DashboardController::index');
     $routes->get('daftar', 'Pengguna\DashboardController::daftar');
+    $routes->get('pendaftaran', 'Pengguna\PendaftaranController::index');
     $routes->post('post-daftar', 'Pengguna\DashboardController::postDaftar');
     $routes->group('id_card', function($routes) {
         $routes->get('/', 'Pengguna\MinePermitController::index');
