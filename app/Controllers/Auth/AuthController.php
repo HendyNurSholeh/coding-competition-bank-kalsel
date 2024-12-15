@@ -42,9 +42,9 @@ class AuthController extends Controller
             $session->set('level', $account['level']);
             $session->set('nama', $account['nama']);
             if ($account['level'] == "operator") {
-                    return redirect()->to('../../operator/event');
+                    return redirect()->to('../../operator/pendaftaran');
                 } else if ($account['level'] == "admin") {
-                return redirect()->to('../../admin/event');
+                return redirect()->to('../../admin/pendaftaran');
             }
         } else {
             // Jika login gagal

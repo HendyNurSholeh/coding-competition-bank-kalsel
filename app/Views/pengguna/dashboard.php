@@ -34,14 +34,31 @@
                             <!--begin::Title-->
                             <div class="d-flex justify-content-between align-items-center mb-4 flex-column flex-md-row">
                                 <div class="fs-4 text-dark">Daftar Event Kantor Bank Kalsel</div>
-                                <div class="fs-6 text-muted mt-2 mt-md-0">Filter:
-                                    <select id="eventFilter" class="form-select">
-                                        <option value="all">Semua</option>
-                                        <option value="pelatihan">Pelatihan</option>
-                                        <option value="seminar">Seminar</option>
-                                        <option value="workshop">Workshop</option>
-                                    </select>
-                                </div>
+
+                                <form action="" method='get'
+                                    class="d-flex flex-column flex-md-row align-items-md-center">
+                                    <div class="text-muted">Filter:</div>
+                                    <div class="fs-6 text-muted mt-2 mt-md-0 me-md-3 d-flex gap-3">
+                                        <select id="eventFilter" name="event_type" class="form-select">
+                                            <option value="all"
+                                                <?= (isset($_GET['event_type']) && $_GET['event_type'] == 'all') ? 'selected' : '' ?>>
+                                                Semua</option>
+                                            <option value="WCC1"
+                                                <?= (isset($_GET['event_type']) && $_GET['event_type'] == 'WCC1') ? 'selected' : '' ?>>
+                                                Pelatihan</option>
+                                            <option value="WCC2"
+                                                <?= (isset($_GET['event_type']) && $_GET['event_type'] == 'WCC2') ? 'selected' : '' ?>>
+                                                Seminar</option>
+                                            <option value="WCC3"
+                                                <?= (isset($_GET['event_type']) && $_GET['event_type'] == 'WCC3') ? 'selected' : '' ?>>
+                                                Workshop</option>
+                                        </select>
+                                        <button id="filter_button" type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                    <div class="mt-3 mt-md-0">
+                                    </div>
+                                </form>
+
                             </div>
                             <!--end::Title-->
                             <!--begin::Event List-->
@@ -56,18 +73,43 @@
                                         <div class="text-muted">Kuota:
                                             <?= $event['registered'] ?>/<?= $event['qouta'] ?>
                                         </div>
+                                        <div class="text-muted">Tipe Event:
+                                            <?php
+                                            switch ($event['event_type']) {
+                                                case 'WCC1':
+                                                    echo 'Pelatihan';
+                                                    break;
+                                                case 'WCC2':
+                                                    echo 'Seminar';
+                                                    break;
+                                                case 'WCC3':
+                                                    echo 'Workshop';
+                                                    break;
+                                                default:
+                                                    echo 'Lainnya';
+                                            }
+                                            ?>
+                                        </div>
                                     </div>
                                     <div class="d-flex flex-column text-end">
-                                        <a href="/pengguna/daftar" class="btn btn-sm btn-light-primary">Daftar</a>
+                                        <?php if ($event['registered'] < $event['qouta']): ?>
+                                        <a href="/pengguna/daftar?id=<?= $event['id']; ?>"
+                                            class="btn btn-sm btn-light-primary border border-primary">Daftar</a>
+                                        <?php else: ?>
+                                        <span class="btn btn-sm btn-danger">Penuh</span>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <?php endforeach; ?>
+                                <?php if (empty($events)): ?>
+                                <div class="text-center text-muted">Tidak ada event yang tersedia.</div>
+                                <?php endif; ?>
                             </div>
                             <!--end::Event List-->
                             <!--begin::View All Button-->
-                            <div class="d-flex justify-content-center mt-4">
+                            <!-- <div class="d-flex justify-content-center mt-4">
                                 <a href="#" class="btn btn-light-primary border border-primary">Lihat Semua</a>
-                            </div>
+                            </div> -->
                             <!--end::View All Button-->
                         </div>
                     </div>

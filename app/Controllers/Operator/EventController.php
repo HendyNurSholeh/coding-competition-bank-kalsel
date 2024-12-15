@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Admin;
+namespace App\Controllers\Operator;
 use App\Controllers\BaseController;
 use App\Models\AccountModel;
 use App\Models\AdminModel;
@@ -18,7 +18,7 @@ class EventController extends BaseController
             'events' => $eventModel->findAll()
         ];
         
-        return view('admin/event', $data);
+        return view('operator/event', $data);
     }
     public function postAdd()
     {
@@ -94,7 +94,7 @@ class EventController extends BaseController
         // Simpan data event
         $eventModel->save($eventData);
 
-        return redirect()->to('/admin/event')->with('success', 'Success! Event berhasil ditambahkan');
+        return redirect()->to('/operator/event')->with('success', 'Success! Event berhasil ditambahkan');
     }
 
 
@@ -173,7 +173,7 @@ class EventController extends BaseController
         $id = $this->request->getPost('id');
         // Simpan data ke model
         $eventModel->update($id, $eventData);
-        return redirect()->to('/admin/event')->with('success', 'Success! Event berhasil diperbarui');
+        return redirect()->to('/operator/event')->with('success', 'Success! Event berhasil diperbarui');
     }
 
 public function postDelete()
@@ -186,7 +186,7 @@ public function postDelete()
         $eventModel->delete($id);
 
         // Redirect kembali ke halaman size list dengan flash message
-        return redirect()->to('/admin/event')->with('success', 'Success! data berhasil dihapus.');
+        return redirect()->to('/operator/event')->with('success', 'Success! data berhasil dihapus.');
     }
 
 }

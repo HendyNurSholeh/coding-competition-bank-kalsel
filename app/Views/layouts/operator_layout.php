@@ -28,19 +28,19 @@ License: For each use you must have a valid license purchased only from above li
     <meta property="og:url" content="https://keenthemes.com/products/ceres-html-pro" />
     <meta property="og:site_name" content="Keenthemes | Ceres HTML Free" />
     <link rel="canonical" href="Https://preview.keenthemes.com/ceres-html-free" />
-    <link rel="shortcut icon" href="<?= base_url(); ?>/image/logo-cropped.png" />
+    <link rel="shortcut icon" href="<?=base_url()?>/image/logo-cropped.png" />
 
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
     <!--begin::Page Vendor Stylesheets(used by this page)-->
-    <link href="<?= base_url(); ?>/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet"
+    <link href="<?=base_url()?>/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet"
         type="text/css" />
     <!--end::Page Vendor Stylesheets-->
     <!--begin::Global Stylesheets Bundle(used by all pages)-->
-    <link href="<?= base_url(); ?>/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="<?= base_url(); ?>/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="<?= base_url(); ?>/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet"
+    <link href="<?=base_url()?>/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="<?=base_url()?>/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="<?=base_url()?>/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet"
         type="text/css" />
     <?= $this->renderSection('css') ?>
 
@@ -240,28 +240,26 @@ License: For each use you must have a valid license purchased only from above li
 
         <div class="navigation-mob">
             <ul>
-
-
-                <li class="list <?= $activeMenu == "transfer" ? "active" : ""; ?>">
-                    <!-- <a href="<?=base_url()?>/pengguna/transfer">
-                        <span class="icon">
-                            <ion-icon name="swap-horizontal-outline"></ion-icon>
-                        </span>
-                        <span class="text">Transfer</span>
-                        <span class="circle"></span>
-                    </a> -->
-                </li>
-                <li class="list <?= $activeMenu == "profile" ? "active" : ""; ?>">
-                    <!-- <a href="<?=base_url()?>/pengguna/profile">
+                <li class="list  <?= $activeMenu == "profile" ? "active" : ""; ?>">
+                    <a href="<?=base_url()?>/operator/profile">
                         <span class="icon">
                             <ion-icon name="person-outline" style="font-size: 1.15em !important;"></ion-icon>
                         </span>
                         <span class="text">Profile</span>
                         <span class="circle"></span>
-                    </a> -->
+                    </a>
                 </li>
-                <li class="list <?= $activeMenu == "dashboard" ? "active" : ""; ?>">
-                    <a href="<?=base_url()?>/pengguna/dashboard" class="">
+                <li class="list <?= $activeMenu == "akun" ? "active" : ""; ?>">
+                    <a href="<?=base_url()?>/operator/akun">
+                        <span class="icon">
+                            <ion-icon name="reader-outline"></ion-icon>
+                        </span>
+                        <span class="text">Akun</span>
+                        <span class="circle"></span>
+                    </a>
+                </li>
+                <li class="list <?= $activeMenu == "pendaftaran" ? "active" : ""; ?>">
+                    <a href="<?=base_url()?>/operator/pendaftaran" class="">
                         <span class="icon" style="box-sizing: border-box !important;">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
@@ -269,46 +267,25 @@ License: For each use you must have a valid license purchased only from above li
                         <span class="circle"></span>
                     </a>
                 </li>
-                <li class="list <?= $activeMenu == "profile" ? "active" : ""; ?>">
-                    <!-- <a href="<?=base_url()?>/pengguna/profile">
-                        <span class="icon">
-                            <ion-icon name="person-outline" style="font-size: 1.15em !important;"></ion-icon>
-                        </span>
-                        <span class="text">Profile</span>
-                        <span class="circle"></span>
-                    </a> -->
-                </li>
-
-                <!-- <li class="list <?= $activeMenu == "pendaftaran" ? "active" : ""; ?>">
-                    <a href="<?=base_url()?>/pengguna/pendaftaran">
+                <li class="list <?= $activeMenu == "event" ? "active" : ""; ?>">
+                    <a href="<?=base_url()?>/operator/event">
                         <span class="icon">
                             <ion-icon name="calendar-outline"></ion-icon>
                         </span>
-                        <span class="text">Peserta</span>
-                        <span class="circle"></span>
-                    </a>
-                </li> -->
-                <li class="list">
-                    <a href="<?=base_url()?>/login">
-                        <span class="icon">
-                            <ion-icon name="log-in-outline"></ion-icon>
-
-                        </span>
-                        <span class="text">Login</span>
+                        <span class="text">Event</span>
                         <span class="circle"></span>
                     </a>
                 </li>
-
-                <!-- <li class="list <?= $activeMenu == "profile" ? "active" : ""; ?>">
-                    <a href="<?=base_url()?>/penggunaan/profile">
+                <li class="list">
+                    <a href="<?=base_url()?>/logout">
                         <span class="icon">
-                            <ion-icon name="person-outline" style="font-size: 1.15em !important;"></ion-icon>
+                            <ion-icon name="log-out-outline"></ion-icon>
+
                         </span>
-                        <span class="text">Profile</span>
+                        <span class="text">Logout</span>
                         <span class="circle"></span>
                     </a>
-                </li> -->
-
+                </li>
 
                 <div class="indicator"></div>
             </ul>
@@ -332,7 +309,7 @@ License: For each use you must have a valid license purchased only from above li
 
 </div>
 
-<body id="kt_body" style="background-image: url(<?= base_url(); ?>/assets/media/patterns/header-bg.png)"
+<body id="kt_body" style="background-image: url(<?=base_url()?>/assets/media/patterns/header-bg.png)"
     class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled">
 
 
@@ -370,10 +347,10 @@ License: For each use you must have a valid license purchased only from above li
                         <!--end::Heaeder menu toggle-->
                         <!--begin::Header Logo-->
                         <div class="header-logo me-5 me-md-10 flex-grow-1 flex-lg-grow-0">
-                            <a href="<?= base_url(); ?>/pengguna/dashboard">
-                                <img alt="Logo" src="<?= base_url(); ?>/image/logo.png" style="border-radius: 8px;"
+                            <a href="<?=base_url()?>/operator/dashboard">
+                                <img alt="Logo" src="<?=base_url()?>/image/logo.png" style="border-radius: 8px;"
                                     class="h-25px h-lg-35px logo-default" />
-                                <img alt="Logo" src="<?= base_url(); ?>/image/logo.png"
+                                <img alt="Logo" src="<?=base_url()?>/image/logo.png"
                                     class="h-35px h-lg-40px logo-sticky" />
                             </a>
                         </div>
@@ -394,33 +371,84 @@ License: For each use you must have a valid license purchased only from above li
                                     <!--begin::Menu-->
                                     <div class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-bold my-5 my-lg-0 align-items-stretch"
                                         id="#kt_header_menu" data-kt-menu="true">
-                                        <a href="<?= base_url(); ?>/pengguna/dashboard"
-                                            data-kt-menu-placement="bottom-start"
-                                            class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "dashboard" ? "here show " : ""; ?>">
+                                        <!-- <a href="<?=base_url()?>/operator/dashboard" data-kt-menu-placement="bottom-start"
+                                            class="menu-item menu-lg-down-accordion me-lg-1 <?php $activeMenu == "dashboard" ? "here show " : ""; ?>">
                                             <span class="menu-link py-3">
                                                 <span class="menu-title">Dashboard</span>
                                                 <span class="menu-arrow d-lg-none"></span>
                                             </span>
-                                        </a>
-
-                                        <!-- <div data-kt-menu-placement="bottom-start"
-                                            class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "pendaftaran" ? "here show " : ""; ?>"">
-                                            <a href=" <?= base_url(); ?>/pengguna/pendaftaran" class="menu-link py-3 px-5">
-                                            <span class="menu-title">Peserta</span>
+                                        </a> -->
+                                        <!-- <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+                                            data-kt-menu-placement="bottom-start"
+                                            class="menu-item menu-lg-down-accordion me-lg-1 <?php $activeMenu == "pengajuan id card" || $activeMenu == "pengajuan simper" ? "here show " : ""; ?>">
+                                            <span class="menu-link py-3">
+                                                <span class="menu-title">
+                                                    Pengajuan
+                                                </span>
+                                                <span class="menu-arrow d-lg-none"></span>
+                                            </span>
+                                            <div
+                                                class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0 py-lg-4 w-lg-225px">
+                                           
+                                                <div class="menu-item">
+                                                    <a class="menu-link py-3 <?php $activeMenu == "pengajuan id card" ? "active " : ""; ?>"
+                                                        href="<?=base_url()?>/operator/id_card">
+                                                        <span class="menu-icon">
+                                                            <i class="bi bi-person-badge-fill"></i>
+                                                        </span>
+                                                        <span class="menu-title">Pengajuan ID Card</span>
+                                                    </a>
+                                                </div>
+                                                <div class="menu-item">
+                                                    <a class="menu-link py-3 <?php $activeMenu == "pengajuan simper" ? "active " : ""; ?>"
+                                                        href="<?=base_url()?>/operator/simper">
+                                                        <span class="menu-icon">
+                                                            <i class="bi bi-credit-card"></i>
+                                                        </span>
+                                                        <span class="menu-title">Pengajuan Simper</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        <div data-kt-menu-placement="bottom-start"
+                                            class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "akun" ? "here show " : ""; ?>"">
+                                            <a href=" <?=base_url()?>/operator/akun" class="menu-link py-3 px-5">
+                                            <span class="menu-title">Management Akun</span>
                                             <span class="menu-arrow d-lg-none"></span>
                                             </a>
-                                        </div> -->
-
+                                        </div>
+                                        <div data-kt-menu-placement="bottom-start"
+                                            class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "event" ? "here show " : ""; ?>"">
+                                            <a href=" <?=base_url()?>/operator/event" class="menu-link py-3 px-5">
+                                            <span class="menu-title">Kelola Event</span>
+                                            <span class="menu-arrow d-lg-none"></span>
+                                            </a>
+                                        </div>
+                                        <div data-kt-menu-placement="bottom-start"
+                                            class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "pendaftaran" ? "here show " : ""; ?>"">
+                                            <a href=" <?=base_url()?>/operator/pendaftaran"
+                                            class="menu-link py-3 px-5">
+                                            <span class="menu-title">Management Peserta</span>
+                                            <span class="menu-arrow d-lg-none"></span>
+                                            </a>
+                                        </div>
+                                        <div data-kt-menu-placement="bottom-start"
+                                            class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "profile" ? "here show " : ""; ?>"">
+                                            <a href=" <?=base_url()?>/operator/profile" class="menu-link py-3 px-5">
+                                            <span class="menu-title">Profile</span>
+                                            <span class="menu-arrow d-lg-none"></span>
+                                            </a>
+                                        </div>
                                         <div data-kt-menu-placement="bottom-start"
                                             class="menu-item menu-lg-down-accordion me-lg-1">
-                                            <a href="<?= base_url(); ?>/auth/login" class="menu-link py-3">
-                                                <span class="menu-title">Login</span>
+                                            <a href="<?=base_url()?>/logout" class="menu-link py-3">
+                                                <span class="menu-title">Logout</span>
                                                 <span class="menu-arrow d-lg-none"></span>
                                             </a>
                                         </div>
                                         <!-- <div data-kt-menu-placement="bottom-start"
                                             class="menu-item menu-lg-down-accordion me-lg-1">
-                                            <a href=" /logout" class="menu-link py-3">
+                                            <a href="<?=base_url()?>/logout" class="menu-link py-3">
                                                 <span class="menu-title">Logout</span>
                                                 <span class="menu-arrow d-lg-none"></span>
                                             </a>
@@ -437,8 +465,7 @@ License: For each use you must have a valid license purchased only from above li
                                 <div class="topbar d-flex align-items-stretch flex-shrink-0">
                                     <span class="menu-title text-white fw-bold ">
                                         <span class="d-flex align-items-center px-1" style="font-size: 93% !important;">
-
-                                            <?= "Event App Bank Kalsel"; ?>
+                                            <?= session("username"); ?>
                                         </span>
                                         <div class="d-flex align-items-end">
                                             <span
@@ -454,12 +481,12 @@ License: For each use you must have a valid license purchased only from above li
                                         <!-- <div class="cursor-pointer symbol symbol-30px symbol-md-40px"
                                             data-kt-menu-trigger="click" data-kt-menu-attach="parent"
                                             data-kt-menu-placement="bottom-end" data-kt-menu-flip="bottom">
-                                            <img src="<?= base_url(); ?>/assets/media/avatars/blank.png" alt="User" />
+                                            <img src="<?=base_url()?>/assets/media/avatars/blank.png" alt="User" />
                                         </div> -->
                                         <!-- <div class="cursor-pointer symbol symbol-30px symbol-md-40px"
                                             data-kt-menu-trigger="click" data-kt-menu-attach="parent"
                                             data-kt-menu-placement="bottom-end">
-                                            <img alt="Pic" src="<?= base_url(); ?>/assets/media/avatars/150-26.jpg" />
+                                            <img alt="Pic" src="<?=base_url()?>/assets/media/avatars/150-26.jpg" />
                                         </div> -->
                                         <!--begin::User account menu-->
                                         <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px"
@@ -470,7 +497,7 @@ License: For each use you must have a valid license purchased only from above li
                                                     <!--begin::Avatar-->
                                                     <div class="symbol symbol-50px me-5">
                                                         <img alt="Logo"
-                                                            src="<?= base_url(); ?>/assets/media/avatars/150-26.jpg" />
+                                                            src="<?=base_url()?>/assets/media/avatars/150-26.jpg" />
                                                     </div>
                                                     <!--end::Avatar-->
                                                     <!--begin::Username-->
@@ -492,7 +519,7 @@ License: For each use you must have a valid license purchased only from above li
                                             <!--end::Menu separator-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-5">
-                                                <a href="<?= base_url(); ?>/pengguna/profile"
+                                                <a href="<?=base_url()?>/operator/profile"
                                                     class="menu-link px-5">Profile
                                                     Saya</a>
                                             </div>
@@ -503,8 +530,7 @@ License: For each use you must have a valid license purchased only from above li
 
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-5">
-                                                <a href="<?= base_url(); ?>/auth/login" class="menu-link px-5">Sign
-                                                    Out</a>
+                                                <a href="<?=base_url()?>/auth/login" class="menu-link px-5">Sign Out</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu separator-->
@@ -577,18 +603,18 @@ License: For each use you must have a valid license purchased only from above li
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <!--begin::Javascript-->
     <!--begin::Global Javascript Bundle(used by all pages)-->
-    <script src="<?= base_url(); ?>/assets/plugins/global/plugins.bundle.js"></script>
-    <script src="<?= base_url(); ?>/assets/js/scripts.bundle.js"></script>
+    <script src="<?=base_url()?>/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="<?=base_url()?>/assets/js/scripts.bundle.js"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Page Vendors Javascript(used by this page)-->
-    <script src="<?= base_url(); ?>/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+    <script src="<?=base_url()?>/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
     <!--end::Page Vendors Javascript-->
     <!--begin::Page Custom Javascript(used by this page)-->
-    <script src="<?= base_url(); ?>/assets/js/custom/widgets.js"></script>
+    <script src="<?=base_url()?>/assets/js/custom/widgets.js"></script>
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
 
-    <script src="<?= base_url(); ?>/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="<?=base_url()?>/assets/plugins/custom/datatables/datatables.bundle.js"></script>
 
     <?= $this->renderSection('js') ?>
 

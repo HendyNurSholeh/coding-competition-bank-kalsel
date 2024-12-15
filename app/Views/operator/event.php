@@ -1,4 +1,4 @@
-<?= $this->extend('layouts/admin_layout') ?>
+<?= $this->extend('layouts/operator_layout') ?>
 <?= $this->section('css') ?>
 <style>
 /* Untuk input search */

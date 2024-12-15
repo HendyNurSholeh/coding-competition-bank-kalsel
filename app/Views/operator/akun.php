@@ -1,4 +1,4 @@
-<?= $this->extend('layouts/admin_layout') ?>
+<?= $this->extend('layouts/operator_layout') ?>
 <?= $this->section('css') ?>
 <style>
 /* Untuk input search */
@@ -57,11 +57,11 @@
                             <div class="card-body py-0">
                                 <div class="row">
                                     <div class="col-12 pb-xxl-5 mb-4" style="overflow-x: auto;">
-                                        <div class="d-flex justify-content-end">
-                                            <button type="button" class="btn btn-info btn-sm me-lg-3"
+                                        <div class="d-flex justify-content-end mb-3">
+                                            <!-- <button type="button" class="btn btn-info btn-sm me-lg-3"
                                                 data-bs-toggle="modal" data-bs-target="#kt_modal_add_user">
                                                 <i class="bi bi-plus fw-bold"></i> Tambah
-                                            </button>
+                                            </button> -->
                                         </div>
 
                                         <table id="kt_datatable_dom_positioning"
@@ -74,7 +74,6 @@
                                                     <th>Email</th>
                                                     <!-- <th>Password</th> -->
                                                     <th>Level</th>
-                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -86,19 +85,6 @@
                                                     <!-- <td><a href="" style="text-decoration: underline;">lihat
                                                             password</a></td> -->
                                                     <td><?= $account['level'] ?></td>
-                                                    <td>
-                                                        <button type="button"
-                                                            class="btn py-1 btn-light-info btn-sm me-2"
-                                                            data-id="<?= $account['id'] ?>" data-bs-toggle="modal"
-                                                            data-bs-target="#kt_modal_edit_user">
-                                                            <i class="bi bi-pen fs-6 fw-bold"></i>
-                                                        </button>
-                                                        <button type="button" class="btn py-1 btn-light-info btn-sm"
-                                                            data-bs-toggle="modal" data-bs-target="#modalDelete"
-                                                            data-id="<?= $account['id']; ?>">
-                                                            <i class="bi bi-trash fs-6 fw-bold"></i>
-                                                        </button>
-                                                    </td>
                                                 </tr>
                                                 <?php endforeach; ?>
                                             </tbody>

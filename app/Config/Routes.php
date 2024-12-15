@@ -56,6 +56,43 @@ $routes->group('admin', function($routes) {
     $routes->get('profile-edit', 'Admin\ProfileController::profileEdit');
     $routes->post('profile/post-edit', 'Admin\ProfileController::postEdit');
 });
+$routes->group('operator', function($routes) {
+   
+    // Company Management
+    $routes->get('akun', 'Operator\AkunController::index');
+    $routes->post('akun/post-add', 'Operator\AkunController::postAdd');
+    $routes->post('akun/post-delete', 'Operator\AkunController::postDelete');
+    $routes->post('akun/post-edit', 'Operator\AkunController::postEdit');
+    
+    $routes->get('event', 'Operator\EventController::index');
+    $routes->post('event/post-add', 'Operator\EventController::postAdd');
+    $routes->post('event/post-delete', 'Operator\EventController::postDelete');
+    $routes->post('event/post-edit', 'Operator\EventController::postEdit');
+    
+    $routes->get('pendaftaran', 'Operator\PendaftaranController::index');
+    $routes->post('pendaftaran/post-add', 'Operator\PendaftaranController::postAdd');
+    $routes->post('pendaftaran/post-delete', 'Operator\PendaftaranController::postDelete');
+    $routes->post('pendaftaran/post-edit', 'Operator\PendaftaranController::postEdit');
+    
+    $routes->group('profile', function($routes) {
+        $routes->get('/', 'Operator\ProfileController::index');
+        $routes->post('reset-password', 'Operator\ProfileController::resetPassword');
+    });
+    $routes->group('simper', function($routes) {
+        $routes->get('/', 'Operator\PengajuanSimperController::index');
+        $routes->get('detail/(:num)', 'Operator\PengajuanSimperController::detail/$1');
+        $routes->get('detail/simper/(:num)', 'Operator\PengajuanSimperController::detailIDCard/$1');
+        $routes->post('post-instan-create', 'Operator\PengajuanSimperController::postInstanCreate');
+        $routes->post('post-delete', 'Operator\PengajuanSimperController::postDelete');
+        $routes->post('post-ajukan-simper', 'Operator\PengajuanSimperController::postAjukanSimper');
+        $routes->post('post-continue-done', 'Operator\PengajuanSimperController::postContinueDone');
+        $routes->get('detail-pengajuan/(:num)', 'Operator\PengajuanSimperController::detailPengajuan/$1');
+
+    });
+    $routes->get('dashboard', 'Operator\DashboardController::index');
+    $routes->get('profile-edit', 'Operator\ProfileController::profileEdit');
+    $routes->post('profile/post-edit', 'Operator\ProfileController::postEdit');
+});
 $routes->group('soh', function($routes) {
     $routes->group('id_card', function($routes) {
         $routes->get('/', 'SOH\PengajuanMinePermitController::index');
@@ -152,6 +189,7 @@ $routes->get('test', 'DeptHead\PengajuanSimperController::test');
 $routes->group('pengguna', function($routes) {
     $routes->get('dashboard', 'Pengguna\DashboardController::index');
     $routes->get('daftar', 'Pengguna\DashboardController::daftar');
+    $routes->post('post-daftar', 'Pengguna\DashboardController::postDaftar');
     $routes->group('id_card', function($routes) {
         $routes->get('/', 'Pengguna\MinePermitController::index');
     });

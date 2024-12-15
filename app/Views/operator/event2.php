@@ -17,7 +17,6 @@
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
 <div id="kt_content_container" class="d-flex flex-column-fluid align-items-start container-xxl">
-
     <!--begin::Post-->
     <div class="content flex-row-fluid" id="kt_content">
         <!--begin::Index-->
@@ -57,7 +56,7 @@
                             <!--begin::Body-->
                             <div class="card-body py-0">
                                 <div class="row">
-                                    <div class="col-12 pb-xxl-5 mb-4" style="overflow-x: auto;">
+                                    <div class="col-12 pb-xxl-5 mb-4">
                                         <div class="d-flex justify-content-end">
                                             <button type="button" class="btn btn-info btn-sm me-lg-3"
                                                 data-bs-toggle="modal" data-bs-target="#kt_modal_add_user">
@@ -89,8 +88,9 @@
                                                     <td><?= $event['description'] ?></td>
                                                     <td><?= date('d M Y', strtotime($event['event_date'])) ?></td>
                                                     <td><?= $event['location'] ?></td>
-                                                    <td>
-                                                        <?php
+                                                    <td><?= $event['event_type'] ?></td>
+                                                    <td></td>
+                                                    <?php
                                                         if ($event['event_type'] == 'WCC1') {
                                                             echo 'Pelatihan';
                                                         } elseif ($event['event_type'] == 'WCC2') {
@@ -106,7 +106,7 @@
                                                         <button type="button"
                                                             class="btn py-1 btn-light-info btn-sm me-2"
                                                             data-id="<?= $event['id'] ?>" data-bs-toggle="modal"
-                                                            data-bs-target="#kt_modal_edit_user<?= $event['id'] ?>">
+                                                            data-bs-target="#kt_modal_edit_user">
                                                             <i class="bi bi-pen fs-6 fw-bold"></i>
                                                         </button>
                                                         <button type="button" class="btn py-1 btn-light-info btn-sm"
@@ -116,156 +116,6 @@
                                                         </button>
                                                     </td>
                                                 </tr>
-
-
-                                                <div class="modal fade" id="kt_modal_edit_user<?= $event['id'] ?>"
-                                                    tabindex="-1" aria-hidden="true">
-                                                    <!--begin::Modal dialog-->
-                                                    <div class="modal-dialog modal-lg">
-                                                        <!--begin::Modal content-->
-                                                        <div class="modal-content">
-                                                            <!--begin::Modal header-->
-                                                            <div class="modal-header" id="kt_modal_add_user_header">
-                                                                <!--begin::Modal title-->
-                                                                <h2 class="fw-bold">Edit Event</h2>
-                                                                <!--end::Modal title-->
-
-                                                                <!--begin::Close-->
-                                                                <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                <!--end::Close-->
-                                                            </div>
-                                                            <!--end::Modal header-->
-
-                                                            <!--begin::Modal body-->
-                                                            <div class="modal-body px-5 my-7">
-                                                                <!--begin::Form-->
-                                                                <form id="kt_modal_edit_broker_form" class="form"
-                                                                    action="/admin/event/post-edit" method="post">
-                                                                    <!--begin::Scroll-->
-                                                                    <div class="d-flex flex-column scroll-y px-5 px-lg-10"
-                                                                        id="kt_modal_edit_broker_scroll"
-                                                                        data-kt-scroll-max-height="auto"
-                                                                        data-kt-scroll-dependencies="#kt_modal_edit_broker_header"
-                                                                        data-kt-scroll-wrappers="#kt_modal_edit_broker_scroll"
-                                                                        data-kt-scroll-offset="300px">
-
-                                                                        <!-- Broker Name -->
-                                                                        <div class="row">
-                                                                            <div class="col-6">
-                                                                                <div class="fv-row mb-7">
-                                                                                    <label
-                                                                                        class="required fw-semibold fs-6 mb-2">Judul</label>
-                                                                                    <input type="text" name="title"
-                                                                                        class="form-control form-control-solid mb-3 mb-lg-0"
-                                                                                        placeholder="Masukkan judul acara"
-                                                                                        value="<?= $event['title'] ?>"
-                                                                                        required />
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-6">
-                                                                                <div class="fv-row mb-7">
-                                                                                    <label
-                                                                                        class="required fw-semibold fs-6 mb-2">Tanggal
-                                                                                        Acara</label>
-                                                                                    <input type="date" name="event_date"
-                                                                                        class="form-control form-control-solid mb-3 mb-lg-0"
-                                                                                        placeholder="Masukkan tanggal acara"
-                                                                                        value="<?= date('Y-m-d', strtotime($event['event_date'])) ?>"
-                                                                                        required />
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col-6">
-                                                                                <div class="fv-row mb-7">
-                                                                                    <label
-                                                                                        class="required fw-semibold fs-6 mb-2">Lokasi</label>
-                                                                                    <input type="text" name="location"
-                                                                                        class="form-control form-control-solid mb-3 mb-lg-0"
-                                                                                        placeholder="Masukkan lokasi acara"
-                                                                                        value="<?= $event['location'] ?>"
-                                                                                        required />
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-6">
-                                                                                <div class="fv-row mb-7">
-                                                                                    <label
-                                                                                        class="required fw-semibold fs-6 mb-2">Jenis
-                                                                                        Acara</label>
-                                                                                    <select name="event_type"
-                                                                                        class="form-control form-control-solid mb-3 mb-lg-0"
-                                                                                        required>
-                                                                                        <option value="">Pilih jenis
-                                                                                            acara</option>
-                                                                                        <option value="WCC1"
-                                                                                            <?= $event['event_type'] == 'WCC1' ? 'selected' : '' ?>>
-                                                                                            Pelatihan</option>
-                                                                                        <option value="WCC2"
-                                                                                            <?= $event['event_type'] == 'WCC2' ? 'selected' : '' ?>>
-                                                                                            Seminar</option>
-                                                                                        <option value="WCC3"
-                                                                                            <?= $event['event_type'] == 'WCC3' ? 'selected' : '' ?>>
-                                                                                            Workshop</option>
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col-12">
-                                                                                <div class="fv-row mb-7">
-                                                                                    <label
-                                                                                        class="required fw-semibold fs-6 mb-2">Kuota</label>
-                                                                                    <input type="number" name="qouta"
-                                                                                        class="form-control form-control-solid mb-3 mb-lg-0"
-                                                                                        placeholder="Masukkan kuota acara"
-                                                                                        value="<?= $event['qouta'] ?>"
-                                                                                        required />
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="fv-row mb-7">
-                                                                            <label
-                                                                                class="required fw-semibold fs-6 mb-2">Deskripsi</label>
-                                                                            <textarea name="description"
-                                                                                class="form-control form-control-solid mb-3 mb-lg-0"
-                                                                                placeholder="Masukkan deskripsi acara"
-                                                                                required><?= $event['description'] ?></textarea>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <!--begin::Actions-->
-                                                                    <div class="text-center pt-10">
-                                                                        <button type="reset" class="btn btn-light me-3"
-                                                                            data-bs-dismiss="modal">
-                                                                            Batal
-                                                                        </button>
-                                                                        <input type="hidden" name="id"
-                                                                            value="<?= $event['id']; ?>" id="id">
-
-                                                                        <button type="submit" class="btn btn-primary"
-                                                                            data-kt-users-modal-action="submit">
-                                                                            <span class="indicator-label">
-                                                                                Submit
-                                                                            </span>
-                                                                            <span class="indicator-progress">
-                                                                                Please wait... <span
-                                                                                    class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                                                            </span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <!--end::Actions-->
-                                                                </form>
-
-                                                                <!--end::Form-->
-                                                            </div>
-                                                            <!--end::Modal body-->
-                                                        </div>
-                                                        <!--end::Modal content-->
-                                                    </div>
-                                                    <!--end::Modal dialog-->
-                                                </div>
-
                                                 <?php endforeach; ?>
                                             </tbody>
                                         </table>
@@ -283,7 +133,9 @@
                 <!--end::Col-->
             </div>
         </div>
+        <!--end::Card body-->
     </div>
+    <!--end::Post-->
 
     <!-- modal delete -->
     <div class="modal fade" tabindex="-1" id="modalDelete">
@@ -441,7 +293,126 @@
 
 
     <!--begin::Modal - Edit task-->
+    <div class="modal fade" id="kt_modal_edit_user" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-lg">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <!--begin::Modal header-->
+                <div class="modal-header" id="kt_modal_add_user_header">
+                    <!--begin::Modal title-->
+                    <h2 class="fw-bold">Edit Event</h2>
+                    <!--end::Modal title-->
 
+                    <!--begin::Close-->
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!--end::Close-->
+                </div>
+                <!--end::Modal header-->
+
+                <!--begin::Modal body-->
+                <div class="modal-body px-5 my-7">
+                    <!--begin::Form-->
+                    <form id="kt_modal_edit_broker_form" class="form" action="/admin/event/post-edit" method="post">
+                        <!--begin::Scroll-->
+                        <div class="d-flex flex-column scroll-y px-5 px-lg-10" id="kt_modal_add_broker_scroll"
+                            data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_edit_broker_header"
+                            data-kt-scroll-wrappers="#kt_modal_add_broker_scroll" data-kt-scroll-offset="300px">
+
+                            <!-- Broker Name -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="fv-row mb-7">
+                                        <label class="required fw-semibold fs-6 mb-2">Nama Perusahaan</label>
+                                        <input type="text" name="event_name"
+                                            class="form-control form-control-solid mb-3 mb-lg-0"
+                                            placeholder="Masukkan nama perusahaan" required />
+                                    </div>
+                                </div>
+                                <!-- <div class="col-6">
+                                    <div class="fv-row mb-7">
+                                        <label class="required fw-semibold fs-6 mb-2">Username</label>
+                                        <input type="text" name="username"
+                                            class="form-control form-control-solid mb-3 mb-lg-0"
+                                            placeholder="Masukkan username" required />
+                                    </div>
+                                </div> -->
+                            </div>
+                            <!-- <div class="row">
+                                <div class="col-6">
+                                    <div class="fv-row mb-7">
+                                        <label class="required fw-semibold fs-6 mb-2">Password</label>
+                                        <input type="password" name="password"
+                                            class="form-control form-control-solid mb-3 mb-lg-0"
+                                            placeholder="Masukkan password" required />
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="fv-row mb-7">
+                                        <label class="required fw-semibold fs-6 mb-2">Konfirmasi Password</label>
+                                        <input type="password" name="confirm_password"
+                                            class="form-control form-control-solid mb-3 mb-lg-0"
+                                            placeholder="Masukkan konfirmasi password" required />
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <!-- Province -->
+
+
+                            <!-- Kecamatan -->
+
+
+                            <!-- PIC -->
+                            <div class="fv-row mb-7">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label class="fw-semibold fs-6 mb-2">PIC</label>
+                                        <input type="text" name="pic"
+                                            class="form-control form-control-solid mb-3 mb-lg-0"
+                                            placeholder="Masukkan nama PIC" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fv-row mb-7">
+                                <label class="fw-semibold fs-6 mb-2">No. Telp PIC</label>
+                                <input type="text" name="no_telp_pic"
+                                    class="form-control form-control-solid mb-3 mb-lg-0"
+                                    placeholder="Masukkan nomor telepon PIC" />
+                            </div>
+
+                        </div>
+                        <!--end::Scroll-->
+
+                        <!--begin::Actions-->
+                        <div class="text-center pt-10">
+                            <button type="reset" class="btn btn-light me-3" data-bs-dismiss="modal">
+                                Batal
+                            </button>
+                            <input type="hidden" name="id" id="id">
+
+                            <button type="submit" class="btn btn-primary" data-kt-users-modal-action="submit">
+                                <span class="indicator-label">
+                                    Submit
+                                </span>
+                                <span class="indicator-progress">
+                                    Please wait... <span
+                                        class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                </span>
+                            </button>
+                        </div>
+                        <!--end::Actions-->
+                    </form>
+
+                    <!--end::Form-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+    <!--end::Modal - Add task-->
 
 </div>
 <?= $this->endSection() ?>
@@ -463,20 +434,19 @@ $("#kt_datatable_dom_positioning").DataTable({
         "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
         ">",
     "scrollX": true,
-});
-
+})
 $('#kt_modal_edit_user').on('show.bs.modal', function(e) {
     var button = $(e.relatedTarget);
     var id = button.data('id');
-    var akun_name = button.data('akun-name');
+    var event_name = button.data('event-name');
     var pic = button.data('pic');
     var no_telp_pic = button.data('no-telp-pic');
     var $id = $(this).find('input[name="id"]');
-    var $akun_name = $(this).find('input[name="akun_name"]');
+    var $event_name = $(this).find('input[name="event_name"]');
     var $pic = $(this).find('input[name="pic"]');
     var $no_telp_pic = $(this).find('input[name="no_telp_pic"]');
     $id.val(id);
-    $akun_name.val(akun_name);
+    $event_name.val(event_name);
     $pic.val(pic);
     $no_telp_pic.val(no_telp_pic);
 });

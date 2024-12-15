@@ -241,7 +241,7 @@ License: For each use you must have a valid license purchased only from above li
         <div class="navigation-mob">
             <ul>
                 <li class="list  <?= $activeMenu == "profile" ? "active" : ""; ?>">
-                    <a href="<?=base_url()?>/dept_head/profile">
+                    <a href="<?=base_url()?>/admin/profile">
                         <span class="icon">
                             <ion-icon name="person-outline" style="font-size: 1.15em !important;"></ion-icon>
                         </span>
@@ -249,17 +249,17 @@ License: For each use you must have a valid license purchased only from above li
                         <span class="circle"></span>
                     </a>
                 </li>
-                <li class="list <?= $activeMenu == "pengajuan id card" ? "active" : ""; ?>">
-                    <a href="<?=base_url()?>/dept_head/id_card">
+                <li class="list <?= $activeMenu == "akun" ? "active" : ""; ?>">
+                    <a href="<?=base_url()?>/admin/akun">
                         <span class="icon">
                             <ion-icon name="reader-outline"></ion-icon>
                         </span>
-                        <span class="text">Mine Permit</span>
+                        <span class="text">Akun</span>
                         <span class="circle"></span>
                     </a>
                 </li>
-                <li class="list <?= $activeMenu == "dashboard" ? "active" : ""; ?>">
-                    <a href="<?=base_url()?>/dept_head/dashboard" class="">
+                <li class="list <?= $activeMenu == "pendaftaran" ? "active" : ""; ?>">
+                    <a href="<?=base_url()?>/admin/pendaftaran" class="">
                         <span class="icon" style="box-sizing: border-box !important;">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
@@ -267,12 +267,12 @@ License: For each use you must have a valid license purchased only from above li
                         <span class="circle"></span>
                     </a>
                 </li>
-                <li class="list <?= $activeMenu == "pengajuan simper" ? "active" : ""; ?>">
-                    <a href="<?=base_url()?>/dept_head/simper">
+                <li class="list <?= $activeMenu == "event" ? "active" : ""; ?>">
+                    <a href="<?=base_url()?>/admin/event">
                         <span class="icon">
-                            <ion-icon name="car-outline"></ion-icon>
+                            <ion-icon name="calendar-outline"></ion-icon>
                         </span>
-                        <span class="text">Simper</span>
+                        <span class="text">Event</span>
                         <span class="circle"></span>
                     </a>
                 </li>
@@ -347,7 +347,7 @@ License: For each use you must have a valid license purchased only from above li
                         <!--end::Heaeder menu toggle-->
                         <!--begin::Header Logo-->
                         <div class="header-logo me-5 me-md-10 flex-grow-1 flex-lg-grow-0">
-                            <a href="<?=base_url()?>/dept_head/dashboard">
+                            <a href="<?=base_url()?>/admin/dashboard">
                                 <img alt="Logo" src="<?=base_url()?>/image/logo.png" style="border-radius: 8px;"
                                     class="h-25px h-lg-35px logo-default" />
                                 <img alt="Logo" src="<?=base_url()?>/image/logo.png"
@@ -371,7 +371,7 @@ License: For each use you must have a valid license purchased only from above li
                                     <!--begin::Menu-->
                                     <div class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-bold my-5 my-lg-0 align-items-stretch"
                                         id="#kt_header_menu" data-kt-menu="true">
-                                        <!-- <a href="<?=base_url()?>/dept_head/dashboard" data-kt-menu-placement="bottom-start"
+                                        <!-- <a href="<?=base_url()?>/admin/dashboard" data-kt-menu-placement="bottom-start"
                                             class="menu-item menu-lg-down-accordion me-lg-1 <?php $activeMenu == "dashboard" ? "here show " : ""; ?>">
                                             <span class="menu-link py-3">
                                                 <span class="menu-title">Dashboard</span>
@@ -392,7 +392,7 @@ License: For each use you must have a valid license purchased only from above li
                                            
                                                 <div class="menu-item">
                                                     <a class="menu-link py-3 <?php $activeMenu == "pengajuan id card" ? "active " : ""; ?>"
-                                                        href="<?=base_url()?>/dept_head/id_card">
+                                                        href="<?=base_url()?>/admin/id_card">
                                                         <span class="menu-icon">
                                                             <i class="bi bi-person-badge-fill"></i>
                                                         </span>
@@ -401,7 +401,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 </div>
                                                 <div class="menu-item">
                                                     <a class="menu-link py-3 <?php $activeMenu == "pengajuan simper" ? "active " : ""; ?>"
-                                                        href="<?=base_url()?>/dept_head/simper">
+                                                        href="<?=base_url()?>/admin/simper">
                                                         <span class="menu-icon">
                                                             <i class="bi bi-credit-card"></i>
                                                         </span>
@@ -518,8 +518,7 @@ License: For each use you must have a valid license purchased only from above li
                                             <!--end::Menu separator-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-5">
-                                                <a href="<?=base_url()?>/dept_head/profile"
-                                                    class="menu-link px-5">Profile
+                                                <a href="<?=base_url()?>/admin/profile" class="menu-link px-5">Profile
                                                     Saya</a>
                                             </div>
                                             <!--end::Menu item-->

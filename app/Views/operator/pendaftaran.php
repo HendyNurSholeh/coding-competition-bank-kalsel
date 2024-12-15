@@ -1,4 +1,4 @@
-<?= $this->extend('layouts/admin_layout') ?>
+<?= $this->extend('layouts/operator_layout') ?>
 <?= $this->section('css') ?>
 <style>
 /* Untuk input search */
@@ -34,7 +34,7 @@
                             <!--begin::Header-->
                             <div class="card-header border-0 pt-5 pb-3">
                                 <!--begin::Card title-->
-                                <h3 class="card-title fw-bolder text-gray-800 fs-2">Daftar Akun
+                                <h3 class="card-title fw-bolder text-gray-800 fs-2">Daftar Peserta
                                 </h3>
                                 <!--end::Card title-->
                                 <!--begin::Card toolbar-->
@@ -56,12 +56,12 @@
                             <!--begin::Body-->
                             <div class="card-body py-0">
                                 <div class="row">
-                                    <div class="col-12 pb-xxl-5 mb-4" style="overflow-x: auto;">
-                                        <div class="d-flex justify-content-end">
-                                            <button type="button" class="btn btn-info btn-sm me-lg-3"
+                                    <div class="col-12 pb-xxl-5 mb-4">
+                                        <div class="d-flex justify-content-end mb-3">
+                                            <!-- <button type="button" class="btn btn-info btn-sm me-lg-3"
                                                 data-bs-toggle="modal" data-bs-target="#kt_modal_add_user">
                                                 <i class="bi bi-plus fw-bold"></i> Tambah
-                                            </button>
+                                            </button> -->
                                         </div>
 
                                         <table id="kt_datatable_dom_positioning"
@@ -70,34 +70,22 @@
                                             <thead>
                                                 <tr class="fw-bold fs-6 text-gray-800 px-7">
                                                     <th>No</th>
-                                                    <th>Nama/Username</th>
+                                                    <th>Nama Event</th>
+                                                    <th>Nama Peserta</th>
+                                                    <th>NPP</th>
                                                     <th>Email</th>
-                                                    <!-- <th>Password</th> -->
-                                                    <th>Level</th>
-                                                    <th>Action</th>
+                                                    <th>Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php $no = 1; foreach ($accounts as $account): ?>
+                                                <?php foreach ($participants as $key => $participant): ?>
                                                 <tr>
-                                                    <td><?= $no++ ?></td>
-                                                    <td><?= $account['username'] ?></td>
-                                                    <td><?= $account['email'] ?></td>
-                                                    <!-- <td><a href="" style="text-decoration: underline;">lihat
-                                                            password</a></td> -->
-                                                    <td><?= $account['level'] ?></td>
-                                                    <td>
-                                                        <button type="button"
-                                                            class="btn py-1 btn-light-info btn-sm me-2"
-                                                            data-id="<?= $account['id'] ?>" data-bs-toggle="modal"
-                                                            data-bs-target="#kt_modal_edit_user">
-                                                            <i class="bi bi-pen fs-6 fw-bold"></i>
-                                                        </button>
-                                                        <button type="button" class="btn py-1 btn-light-info btn-sm"
-                                                            data-bs-toggle="modal" data-bs-target="#modalDelete"
-                                                            data-id="<?= $account['id']; ?>">
-                                                            <i class="bi bi-trash fs-6 fw-bold"></i>
-                                                        </button>
+                                                    <td><?= $key + 1 ?></td>
+                                                    <td><?= $participant['title'] ?></td>
+                                                    <td><?= $participant['name'] ?></td>
+                                                    <td><?= $participant['npp'] ?></td>
+                                                    <td><?= $participant['email'] ?></td>
+                                                    <td><?= date('d M Y H:i', strtotime($participant['created_at'])) ?>
                                                     </td>
                                                 </tr>
                                                 <?php endforeach; ?>
@@ -127,7 +115,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <ny class="modal-title">Konfirmasi Hapus Akun</ny>
+                    <ny class="modal-title">Konfirmasi Hapus Pendaftaran</ny>
 
                     <!--begin::Close-->
                     <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
@@ -142,7 +130,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <form action="/admin/akun/post-delete" method="post">
+                    <form action="/admin/pendaftaran/post-delete" method="post">
                         <input type="hidden" name="id" id="id">
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-danger">Hapus</button>
@@ -161,7 +149,7 @@
                 <!--begin::Modal header-->
                 <div class="modal-header" id="kt_modal_add_user_header">
                     <!--begin::Modal title-->
-                    <h2 class="fw-bold">Tambah Akun</h2>
+                    <h2 class="fw-bold">Tambah Pendaftaran</h2>
                     <!--end::Modal title-->
 
                     <!--begin::Close-->
@@ -173,7 +161,7 @@
                 <!--begin::Modal body-->
                 <div class="modal-body px-5 my-7">
                     <!--begin::Form-->
-                    <form id="kt_modal_add_broker_form" class="form" action="/admin/akun/post-add" method="post">
+                    <form id="kt_modal_add_broker_form" class="form" action="/admin/pendaftaran/post-add" method="post">
                         <!--begin::Scroll-->
                         <div class="d-flex flex-column scroll-y px-5 px-lg-10" id="kt_modal_add_broker_scroll"
                             data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_broker_header"
@@ -181,53 +169,63 @@
 
                             <!-- Broker Name -->
                             <div class="row">
+                                <div class="col-6">
+                                    <div class="fv-row mb-7">
+                                        <label class="required fw-semibold fs-6 mb-2">Judul</label>
+                                        <input type="text" name="title"
+                                            class="form-control form-control-solid mb-3 mb-lg-0"
+                                            placeholder="Masukkan judul acara" required />
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="fv-row mb-7">
+                                        <label class="required fw-semibold fs-6 mb-2">Tanggal Acara</label>
+                                        <input type="date" name="pendaftaran_date"
+                                            class="form-control form-control-solid mb-3 mb-lg-0"
+                                            placeholder="Masukkan tanggal acara" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="fv-row mb-7">
+                                        <label class="required fw-semibold fs-6 mb-2">Lokasi</label>
+                                        <input type="text" name="location"
+                                            class="form-control form-control-solid mb-3 mb-lg-0"
+                                            placeholder="Masukkan lokasi acara" required />
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="fv-row mb-7">
+                                        <label class="required fw-semibold fs-6 mb-2">Jenis Acara</label>
+                                        <input type="text" name="pendaftaran_type"
+                                            class="form-control form-control-solid mb-3 mb-lg-0"
+                                            placeholder="Masukkan jenis acara" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-12">
                                     <div class="fv-row mb-7">
-                                        <label class="required fw-semibold fs-6 mb-2">Nama/Username</label>
-                                        <input type="text" name="username"
+                                        <label class="required fw-semibold fs-6 mb-2">Kuota</label>
+                                        <input type="number" name="qouta"
                                             class="form-control form-control-solid mb-3 mb-lg-0"
-                                            placeholder="Masukkan nama" required />
+                                            placeholder="Masukkan kuota acara" required />
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="fv-row mb-7">
-                                        <label class="required fw-semibold fs-6 mb-2">Password</label>
-                                        <input type="password" name="password"
-                                            class="form-control form-control-solid mb-3 mb-lg-0"
-                                            placeholder="Masukkan password" required />
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="fv-row mb-7">
-                                        <label class="required fw-semibold fs-6 mb-2">Konfirmasi Password</label>
-                                        <input type="password" name="confirm_password"
-                                            class="form-control form-control-solid mb-3 mb-lg-0"
-                                            placeholder="Masukkan konfirmasi password" required />
-                                    </div>
-                                </div>
+                            <div class="fv-row mb-7">
+                                <label class="required fw-semibold fs-6 mb-2">Deskripsi</label>
+                                <textarea name="description" class="form-control form-control-solid mb-3 mb-lg-0"
+                                    placeholder="Masukkan deskripsi acara" required></textarea>
                             </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="fv-row mb-7">
-                                        <label class="required fw-semibold fs-6 mb-2">Email</label>
-                                        <input type="email" name="email"
-                                            class="form-control form-control-solid mb-3 mb-lg-0"
-                                            placeholder="Masukkan email" required />
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="fv-row mb-7">
-                                        <label class="required fw-semibold fs-6 mb-2">Level</label>
-                                        <select name="level" class="form-select form-select-solid" required>
-                                            <option value="">- Pilih Level -</option>
-                                            <option value="admin">Admin</option>
-                                            <option value="operator">Operator</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- <div class="fv-row mb-7">
+                                <label class="required fw-semibold fs-6 mb-2">Status</label>
+                                <select name="status" class="form-select form-select-solid" required>
+                                    <option value="active">Open</option>
+                                    <option value="inactive">Close</option>
+                                </select>
+                            </div> -->
 
                         </div>
                         <!--end::Scroll-->
@@ -272,7 +270,7 @@
                 <!--begin::Modal header-->
                 <div class="modal-header" id="kt_modal_add_user_header">
                     <!--begin::Modal title-->
-                    <h2 class="fw-bold">Edit Akun</h2>
+                    <h2 class="fw-bold">Edit Pendaftaran</h2>
                     <!--end::Modal title-->
 
                     <!--begin::Close-->
@@ -284,7 +282,8 @@
                 <!--begin::Modal body-->
                 <div class="modal-body px-5 my-7">
                     <!--begin::Form-->
-                    <form id="kt_modal_edit_broker_form" class="form" action="/admin/akun/post-edit" method="post">
+                    <form id="kt_modal_edit_broker_form" class="form" action="/admin/pendaftaran/post-edit"
+                        method="post">
                         <!--begin::Scroll-->
                         <div class="d-flex flex-column scroll-y px-5 px-lg-10" id="kt_modal_add_broker_scroll"
                             data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_edit_broker_header"
@@ -295,7 +294,7 @@
                                 <div class="col-12">
                                     <div class="fv-row mb-7">
                                         <label class="required fw-semibold fs-6 mb-2">Nama Perusahaan</label>
-                                        <input type="text" name="akun_name"
+                                        <input type="text" name="pendaftaran_name"
                                             class="form-control form-control-solid mb-3 mb-lg-0"
                                             placeholder="Masukkan nama perusahaan" required />
                                     </div>
@@ -406,27 +405,26 @@ $("#kt_datatable_dom_positioning").DataTable({
         ">",
     "scrollX": true,
 });
-
 $('#kt_modal_edit_user').on('show.bs.modal', function(e) {
     var button = $(e.relatedTarget);
     var id = button.data('id');
-    var akun_name = button.data('akun-name');
+    var pendaftaran_name = button.data('pendaftaran-name');
     var pic = button.data('pic');
     var no_telp_pic = button.data('no-telp-pic');
     var $id = $(this).find('input[name="id"]');
-    var $akun_name = $(this).find('input[name="akun_name"]');
+    var $pendaftaran_name = $(this).find('input[name="pendaftaran_name"]');
     var $pic = $(this).find('input[name="pic"]');
     var $no_telp_pic = $(this).find('input[name="no_telp_pic"]');
     $id.val(id);
-    $akun_name.val(akun_name);
+    $pendaftaran_name.val(pendaftaran_name);
     $pic.val(pic);
     $no_telp_pic.val(no_telp_pic);
 });
 
 // modal modalDelete$(document).ready(function() {
 // Ketika tombol hapus diklik
-$('#modalDelete').on('show.bs.modal', function(event) {
-    var button = $(event.relatedTarget); // Tombol yang memicu modal
+$('#modalDelete').on('show.bs.modal', function(pendaftaran) {
+    var button = $(pendaftaran.relatedTarget); // Tombol yang memicu modal
     var id = button.data('id'); // Ambil ID dari atribut data-id
     var modal = $(this);
     console.log(id);

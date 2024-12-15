@@ -34,7 +34,7 @@
                             <!--begin::Header-->
                             <div class="card-header border-0 pt-5 pb-3">
                                 <!--begin::Card title-->
-                                <h3 class="card-title fw-bolder text-gray-800 fs-2">Daftar Pendaftaran
+                                <h3 class="card-title fw-bolder text-gray-800 fs-2">Daftar Peserta
                                 </h3>
                                 <!--end::Card title-->
                                 <!--begin::Card toolbar-->
@@ -57,11 +57,11 @@
                             <div class="card-body py-0">
                                 <div class="row">
                                     <div class="col-12 pb-xxl-5 mb-4">
-                                        <div class="d-flex justify-content-end">
-                                            <button type="button" class="btn btn-info btn-sm me-lg-3"
+                                        <div class="d-flex justify-content-end mb-3">
+                                            <!-- <button type="button" class="btn btn-info btn-sm me-lg-3"
                                                 data-bs-toggle="modal" data-bs-target="#kt_modal_add_user">
                                                 <i class="bi bi-plus fw-bold"></i> Tambah
-                                            </button>
+                                            </button> -->
                                         </div>
 
                                         <table id="kt_datatable_dom_positioning"
@@ -71,7 +71,7 @@
                                                 <tr class="fw-bold fs-6 text-gray-800 px-7">
                                                     <th>No</th>
                                                     <th>Nama Event</th>
-                                                    <th>Nama</th>
+                                                    <th>Nama Peserta</th>
                                                     <th>NPP</th>
                                                     <th>Email</th>
                                                     <th>Tanggal</th>

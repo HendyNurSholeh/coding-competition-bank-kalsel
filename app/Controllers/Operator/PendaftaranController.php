@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Admin;
+namespace App\Controllers\Operator;
 use App\Controllers\BaseController;
 use App\Models\AccountModel;
 use App\Models\AdminModel;
@@ -20,7 +20,7 @@ class PendaftaranController extends BaseController
                             ->findAll()
         ];
         
-        return view('admin/pendaftaran', $data);
+        return view('operator/pendaftaran', $data);
     }
     public function postAdd()
     {
@@ -96,7 +96,7 @@ class PendaftaranController extends BaseController
         // Simpan data pendaftaran
         $pendaftaranModel->save($pendaftaranData);
 
-        return redirect()->to('/admin/pendaftaran')->with('success', 'Success! pendaftaran berhasil ditambahkan');
+        return redirect()->to('/operator/pendaftaran')->with('success', 'Success! pendaftaran berhasil ditambahkan');
     }
 
 
@@ -177,7 +177,7 @@ class PendaftaranController extends BaseController
         $id= $this->request->getPost('id');
         // Simpan data ke model
         $pendaftaranModel->update($id, $CompanyData);
-        return redirect()->to('/admin/pendaftaran')->with('success', 'Succes! Company berhasil diperbarui   ');
+        return redirect()->to('/operator/pendaftaran')->with('success', 'Succes! Company berhasil diperbarui   ');
 }
 
 public function postDelete()
@@ -190,7 +190,7 @@ public function postDelete()
         $pendaftaranModel->delete($id);
 
         // Redirect kembali ke halaman size list dengan flash message
-        return redirect()->to('/admin/pendaftaran')->with('success', 'Success! data berhasil dihapus.');
+        return redirect()->to('/operator/pendaftaran')->with('success', 'Success! data berhasil dihapus.');
     }
 
 }
