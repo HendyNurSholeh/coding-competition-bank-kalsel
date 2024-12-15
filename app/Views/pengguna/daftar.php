@@ -185,7 +185,8 @@
                                 <!--begin::Nav-->
                                 <div id="stepper-navigate" class="stepper-nav flex-center flex-wrap mb-10">
                                     <!--begin::Step 1-->
-                                    <div class="stepper-item mx-8 my-4 current" data-kt-stepper-element="nav">
+                                    <div class="stepper-item mx-8 my-4 current hide-mobile"
+                                        data-kt-stepper-element="nav">
                                         <!--begin::Wrapper-->
                                         <div class="stepper-wrapper d-flex align-items-center">
                                             <!--begin::Icon-->
