@@ -15,7 +15,7 @@ License: For each use you must have a valid license purchased only from above li
 
 <head>
     <base href="">
-    <title>United Tractors</title>
+    <title>Event App Bank Kalsel</title>
     <meta name="description"
         content="Ceres admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." />
     <meta name="keywords"
@@ -411,16 +411,23 @@ License: For each use you must have a valid license purchased only from above li
                                             </div>
                                         </div> -->
                                         <div data-kt-menu-placement="bottom-start"
-                                            class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "pengajuan id card" ? "here show " : ""; ?>"">
-                                            <a href=" <?=base_url()?>/admin/id_card" class="menu-link py-3 px-5">
-                                            <span class="menu-title">Mine Permit</span>
+                                            class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "akun" ? "here show " : ""; ?>"">
+                                            <a href=" <?=base_url()?>/admin/akun" class="menu-link py-3 px-5">
+                                            <span class="menu-title">Management Akun</span>
                                             <span class="menu-arrow d-lg-none"></span>
                                             </a>
                                         </div>
                                         <div data-kt-menu-placement="bottom-start"
-                                            class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "pengajuan simper" ? "here show " : ""; ?>"">
-                                            <a href=" <?=base_url()?>/admin/simper" class="menu-link py-3 px-5">
-                                            <span class="menu-title">Simper</span>
+                                            class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "event" ? "here show " : ""; ?>"">
+                                            <a href=" <?=base_url()?>/admin/event" class="menu-link py-3 px-5">
+                                            <span class="menu-title">Kelola Event</span>
+                                            <span class="menu-arrow d-lg-none"></span>
+                                            </a>
+                                        </div>
+                                        <div data-kt-menu-placement="bottom-start"
+                                            class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "pendaftaran" ? "here show " : ""; ?>"">
+                                            <a href=" <?=base_url()?>/admin/pendaftaran" class="menu-link py-3 px-5">
+                                            <span class="menu-title">Management Peserta</span>
                                             <span class="menu-arrow d-lg-none"></span>
                                             </a>
                                         </div>
@@ -558,7 +565,7 @@ License: For each use you must have a valid license purchased only from above li
                         <div class="text-dark order-2 order-md-1">
                             <span class="text-muted fw-bold me-1">2024©</span>
                             <a href="https://keenthemes.com" target="_blank" class="text-gray-800 text-hover-primary">PT
-                                United Tractors</a>
+                                Event App Bank Kalsel</a>
                         </div>
                         <!--end::Copyright-->
                         <!--end::Menu-->

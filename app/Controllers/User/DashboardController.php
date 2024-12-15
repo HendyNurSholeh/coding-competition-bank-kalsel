@@ -16,6 +16,7 @@ class DashboardController extends BaseController
         ];
         return view('user/dashboard', $data);
     }
+    
     public function ajukanKredit(): string
     {
         $data = [

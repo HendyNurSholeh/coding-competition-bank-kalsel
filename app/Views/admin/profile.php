@@ -54,7 +54,7 @@
                         <div class="d-flex flex-center flex-column">
                             <!--begin::Avatar-->
                             <div class="symbol  mb-3 symbol-100px symbol-circle "><img alt="Pic"
-                                    src="<?= base_url('uploads/pas_foto/') . $profileData['pas_foto'] ?? 'blank.png'?>" />
+                                    src="<?= base_url('uploads/pas_foto/') . 'blank.png'?>" />
                             </div>
                             <!--end::Avatar-->
                             <!--begin::Name-->
@@ -72,7 +72,7 @@
                             <!--begin::Actions-->
                             <div class="d-flex flex-center">
                                 <a href="#" class="btn btn-sm btn-light-primary py-2 px-4 fw-bold me-2"
-                                    data-kt-drawer-show="true" data-kt-drawer-target="#kt_drawer_chat">Nasabah</a>
+                                    data-kt-drawer-show="true" data-kt-drawer-target="#kt_drawer_chat">Admin</a>
                             </div>
                             <!--end::Actions-->
                         </div>
@@ -111,9 +111,9 @@
                         <div class="card-title m-0">
                             <h3 class="fw-bolder m-0">Profile Detail</h3>
                         </div>
-                        <a href="profile-edit"
+                        <!-- <a href="profile-edit"
                             class="btn btn-sm btn-light-primary border border-primary align-self-center">Edit
-                            Profile</a>
+                            Profile</a> -->
                         <!--end::Card title-->
                     </div>
                     <!--begin::Card header-->
@@ -123,25 +123,13 @@
                         <!--begin::Input group-->
                         <div class="row mb-7">
                             <!--begin::Label-->
-                            <label class="col-lg-4 fw-bold text-muted">Username <i
+                            <label class="col-lg-4 fw-bold text-muted">Nama/Username <i
                                     class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
                                     title="Country of origination"></i></label>
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
                                 <span class="fw-bold fs-6"><?= esc($profileData['username'] ?? '') ?></span>
-                            </div>
-                            <!--end::Col-->
-                        </div>
-                        <div class="row mb-7">
-                            <!--begin::Label-->
-                            <label class="col-lg-4 fw-bold text-muted">Nama Lengkap <i
-                                    class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
-                                    title="Country of origination"></i></label>
-                            <!--end::Label-->
-                            <!--begin::Col-->
-                            <div class="col-lg-8 fv-row">
-                                <span class="fw-bold fs-6"><?= esc($profileData['nama'] ?? '') ?></span>
                             </div>
                             <!--end::Col-->
                         </div>

@@ -14,7 +14,7 @@ License: For each use you must have a valid license purchased only from above li
 <!--begin::Head-->
 
 <head>
-    <title>Hepi GO</title>
+    <title>Event App Bank Kalsel</title>
     <link rel="shortcut icon" href="<?=base_url()?>/image/logo-cropped.png" />
     <meta charset="utf-8" />
     <meta name="description"
@@ -100,11 +100,11 @@ License: For each use you must have a valid license purchased only from above li
         <!--begin::Image placeholder-->
         <style>
         .auth-page-bg {
-            background-image: url('<?=base_url()?>/assets/media/illustrations/dozzy-1/14.png');
+            /* background-image: url('<?=base_url()?>/assets/media/illustrations/dozzy-1/14.png'); */
         }
 
         [data-bs-theme="dark"] .auth-page-bg {
-            background-image: url('<?=base_url()?>/assets/media/illustrations/dozzy-1/14-dark.png');
+            /* background-image: url('<?=base_url()?>/assets/media/illustrations/dozzy-1/14-dark.png'); */
         }
         </style>
         <!--end::Image placeholder-->
@@ -117,7 +117,7 @@ License: For each use you must have a valid license purchased only from above li
                 <!--end::Logo-->
                 <!--begin::Heading-->
                 <div class="text-center">
-                    <img alt="Logo" src="<?=base_url()?>/image/logo-removebg.png"
+                    <img alt="Logo" src="<?=base_url()?>/image/logo.png"
                         class="h-60px mb-3 theme-light-show rounded-3" />
                     <!--begin::Title-->
                     <!--end::Link-->
@@ -180,7 +180,7 @@ License: For each use you must have a valid license purchased only from above li
                             <!--end::Input-->
 
                         </div>
-                        <p>Belum punya akun? <a href="/auth/register">daftar sekarang</a></p>
+                        <!-- <p>Belum punya akun? <a href="/auth/register">daftar sekarang</a></p> -->
                         <!--end::Input group-->
 
                         <!--begin::Actions-->

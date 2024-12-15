@@ -39,13 +39,12 @@ class AuthController extends Controller
             $session->set('is_login', true);
             $session->set('user_id', $account['id']);
             $session->set('username', $account['username']);
-            $session->set('pas_foto', $account['pas_foto']);
             $session->set('level', $account['level']);
             $session->set('nama', $account['nama']);
-            if ($account['level'] == "pengguna") {
-                    return redirect()->to('../../user/dashboard');
-            } else if ($account['level'] == "admin") {
-                return redirect()->to('../../admin/dashboard');
+            if ($account['level'] == "operator") {
+                    return redirect()->to('../../operator/event');
+                } else if ($account['level'] == "admin") {
+                return redirect()->to('../../admin/event');
             }
         } else {
             // Jika login gagal

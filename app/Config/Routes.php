@@ -5,8 +5,8 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Freeuser::index');
-// $routes->addRedirect('/', '/auth/login');
+// $routes->get('/', 'Freeuser::index');
+$routes->addRedirect('/', '/pengguna/dashboard');
 $routes->get('run-migration', 'Home::runMigration');
 $routes->get('api/simper/(:num)', 'Api\SimperController::getSimperById/$1');
 // $routes->get('generate-bg-simper', 'DeptHead\PengajuanSimperController::generateIdCardBelakangBg');
@@ -20,16 +20,23 @@ $routes->get('api/simper/(:num)', 'Api\SimperController::getSimperById/$1');
 //     });
 // });
 $routes->group('admin', function($routes) {
-    $routes->group('id_card', function($routes) {
-        $routes->get('/', 'Admin\PengajuanMinePermitController::index');
-        $routes->get('detail/(:num)', 'Admin\PengajuanMinePermitController::detail/$1');
-        $routes->get('detail/id_card/(:num)', 'Admin\PengajuanMinePermitController::detailIDCard/$1');
-        $routes->post('post-instan-create', 'Admin\PengajuanMinePermitController::postInstanCreate');
-        $routes->post('post-ajukan-minepermit', 'Admin\PengajuanMinePermitController::postAjukanMinePermit');
-        $routes->post('post-delete', 'Admin\PengajuanMinePermitController::postDelete');
-        $routes->post('post-continue-done', 'Admin\PengajuanMinePermitController::postContinueDone');
-        $routes->get('detail-pengajuan/(:num)', 'Admin\PengajuanMinePermitController::detailPengajuan/$1');
-    });
+   
+    // Company Management
+    $routes->get('akun', 'Admin\AkunController::index');
+    $routes->post('akun/post-add', 'Admin\AkunController::postAdd');
+    $routes->post('akun/post-delete', 'Admin\AkunController::postDelete');
+    $routes->post('akun/post-edit', 'Admin\AkunController::postEdit');
+    
+    $routes->get('event', 'Admin\EventController::index');
+    $routes->post('event/post-add', 'Admin\EventController::postAdd');
+    $routes->post('event/post-delete', 'Admin\EventController::postDelete');
+    $routes->post('event/post-edit', 'Admin\EventController::postEdit');
+    
+    $routes->get('pendaftaran', 'Admin\PendaftaranController::index');
+    $routes->post('pendaftaran/post-add', 'Admin\PendaftaranController::postAdd');
+    $routes->post('pendaftaran/post-delete', 'Admin\PendaftaranController::postDelete');
+    $routes->post('pendaftaran/post-edit', 'Admin\PendaftaranController::postEdit');
+    
     $routes->group('profile', function($routes) {
         $routes->get('/', 'Admin\ProfileController::index');
         $routes->post('reset-password', 'Admin\ProfileController::resetPassword');
@@ -144,6 +151,7 @@ $routes->group('corpo', function($routes) {
 $routes->get('test', 'DeptHead\PengajuanSimperController::test');
 $routes->group('pengguna', function($routes) {
     $routes->get('dashboard', 'Pengguna\DashboardController::index');
+    $routes->get('daftar', 'Pengguna\DashboardController::daftar');
     $routes->group('id_card', function($routes) {
         $routes->get('/', 'Pengguna\MinePermitController::index');
     });

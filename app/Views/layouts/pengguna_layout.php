@@ -15,7 +15,7 @@ License: For each use you must have a valid license purchased only from above li
 
 <head>
     <base href="">
-    <title>Hepi GO</title>
+    <title>Event App Bank Kalsel</title>
     <meta name="description"
         content="Ceres admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." />
     <meta name="keywords"
@@ -393,30 +393,15 @@ License: For each use you must have a valid license purchased only from above li
                                         <div data-kt-menu-placement="bottom-start"
                                             class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "topup" ? "here show " : ""; ?>"">
                                             <a href=" <?= base_url(); ?>/pengguna/topup" class="menu-link py-3 px-5">
-                                            <span class="menu-title">Top Up</span>
-                                            <span class="menu-arrow d-lg-none"></span>
-                                            </a>
-                                        </div>
-                                        <div data-kt-menu-placement="bottom-start"
-                                            class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "transfer" ? "here show " : ""; ?>"">
-                                            <a href=" <?= base_url(); ?>/pengguna/transfer"
-                                            class="menu-link py-3 px-5">
-                                            <span class="menu-title">Transfer</span>
+                                            <span class="menu-title">Event</span>
                                             <span class="menu-arrow d-lg-none"></span>
                                             </a>
                                         </div>
 
                                         <div data-kt-menu-placement="bottom-start"
-                                            class="menu-item menu-lg-down-accordion me-lg-1 <?= $activeMenu == "profile" ? "here show " : ""; ?>"">
-                                            <a href=" <?= base_url(); ?>/pengguna/profile" class="menu-link py-3 px-5">
-                                            <span class="menu-title">Profile</span>
-                                            <span class="menu-arrow d-lg-none"></span>
-                                            </a>
-                                        </div>
-                                        <div data-kt-menu-placement="bottom-start"
                                             class="menu-item menu-lg-down-accordion me-lg-1">
-                                            <a href="<?= base_url(); ?>/logout" class="menu-link py-3">
-                                                <span class="menu-title">Logout</span>
+                                            <a href="<?= base_url(); ?>/auth/login" class="menu-link py-3">
+                                                <span class="menu-title">Login</span>
                                                 <span class="menu-arrow d-lg-none"></span>
                                             </a>
                                         </div>
@@ -440,7 +425,7 @@ License: For each use you must have a valid license purchased only from above li
                                     <span class="menu-title text-white fw-bold ">
                                         <span class="d-flex align-items-center px-1" style="font-size: 93% !important;">
 
-                                            <?= "Hepi GO"; ?>
+                                            <?= "Event App Bank Kalsel"; ?>
                                         </span>
                                         <div class="d-flex align-items-end">
                                             <span
@@ -543,7 +528,7 @@ License: For each use you must have a valid license purchased only from above li
                         <div class="text-dark order-2 order-md-1">
                             <span class="text-muted fw-bold me-1">2024©</span>
                             <a href="https://keenthemes.com" target="_blank" class="text-gray-800 text-hover-primary">PT
-                                Hepi GO</a>
+                                Event App Bank Kalsel</a>
                         </div>
                         <!--end::Copyright-->
                         <!--end::Menu-->

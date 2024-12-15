@@ -3,28 +3,57 @@
 namespace App\Controllers\Pengguna;
 
 use App\Controllers\BaseController;
+use App\Models\EventModel;
 use App\Models\HistoryModel;
 use App\Models\RekeningModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class DashboardController extends BaseController
 {
-    public function index(): string
+    public function index()
     {
-        $rekeningModel = new RekeningModel();
-        $historyModel = new HistoryModel();
-        $rekening = $rekeningModel->where("account_id", session('user_id'))->first();
-        $history = $historyModel->where("no_rek", $rekening['no_rek'])->orderBy('created_at', 'DESC')->limit(3)->findAll();
+        $eventModel = new EventModel();
+        $events = $eventModel->findAll();
 
         $data = [
             "activeMenu" => "dashboard",
-            "rekening" => $rekening,
-            "history" => $history
+            "events" => $events
         ];
+        // dd($data);
 
         return view('pengguna/dashboard', $data);
     }
+    public function daftar()
+    {
+        $eventModel = new EventModel();
+        $events = $eventModel->findAll();
 
+        $data = [
+            "activeMenu" => "dashboard",
+            "events" => $events
+        ];
+        // dd($data);
+
+        return view('pengguna/daftar', $data);
+    }
+    public function getEvents()
+    {
+        $client = \Config\Services::curlrequest();
+        $response = $client->post('https://wcc.bankkalsel.co.id/event', [
+            'form_params' => [
+                'KEY' => 'WCC2024'
+            ]
+        ]);
+
+        $events = json_decode($response->getBody(), true);
+
+        $data = [
+            "activeMenu" => "dashboard",
+            "events" => $events
+        ];
+
+        return view('pengguna/events', $data);
+    }
     public function ajukanMinePermit(): string
     {
         // session()->set("company_id", $companyId);
