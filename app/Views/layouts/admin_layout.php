@@ -15,7 +15,7 @@ License: For each use you must have a valid license purchased only from above li
 
 <head>
     <base href="">
-    <title>United Tractors</title>
+    <title>Event App Bank Kalsel</title>
     <meta name="description"
         content="Ceres admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." />
     <meta name="keywords"
@@ -566,7 +566,7 @@ License: For each use you must have a valid license purchased only from above li
                         <div class="text-dark order-2 order-md-1">
                             <span class="text-muted fw-bold me-1">2024©</span>
                             <a href="https://keenthemes.com" target="_blank" class="text-gray-800 text-hover-primary">PT
-                                United Tractors</a>
+                                Event App Bank Kalsel</a>
                         </div>
                         <!--end::Copyright-->
                         <!--end::Menu-->

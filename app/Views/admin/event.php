@@ -122,19 +122,18 @@
 
                                     </div>
                                 </div>
-
-                                <!--end::Table-->
                             </div>
-                            <!--end::Body-->
+
+                            <!--end::Table-->
                         </div>
-                        <!--end::Table Widget 1-->
+                        <!--end::Body-->
                     </div>
-                    <!--end::Col-->
+                    <!--end::Table Widget 1-->
                 </div>
+                <!--end::Col-->
             </div>
-            <!--end::Card body-->
         </div>
-        <!--end::Index-->
+        <!--end::Card body-->
     </div>
     <!--end::Post-->
 
