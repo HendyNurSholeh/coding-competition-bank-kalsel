@@ -111,8 +111,28 @@ class AuthController extends Controller
         $email = $this->request->getPost('email');
 
         // Validasi data input
+        if (empty($username) || empty($password) || empty($confirmPassword) || empty($fullName) || empty($email)) {
+            $session->setFlashdata('error', 'Semua field harus diisi.');
+            return redirect()->back()->withInput();
+        }
+
         if ($password !== $confirmPassword) {
             $session->setFlashdata('error', 'Password dan konfirmasi password tidak cocok.');
+            return redirect()->back()->withInput();
+        }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $session->setFlashdata('error', 'Email tidak valid.');
+            return redirect()->back()->withInput();
+        }
+
+        if ($accountModel->where('username', $username)->first()) {
+            $session->setFlashdata('error', 'Username sudah digunakan.');
+            return redirect()->back()->withInput();
+        }
+
+        if ($accountModel->where('email', $email)->first()) {
+            $session->setFlashdata('error', 'Email sudah digunakan.');
             return redirect()->back()->withInput();
         }
 
